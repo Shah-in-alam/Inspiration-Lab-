@@ -24,3 +24,14 @@ C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-L
 C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\LawFarm.pdb
 C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\LawFarm.genruntimeconfig.cache
 C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\ref\LawFarm.dll
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\bin\Debug\net8.0-windows\MySqlConnector.dll
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\LawFarm.csproj.AssemblyReference.cache
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\LawFarm.csproj.Up2Date
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\HomePage.g.cs
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\LawFarm_MarkupCompile.lref
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\HomePage.baml
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\Navbar.g.cs
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\Navbar.baml
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,6 +21,7 @@ namespace LawFarm
     /// </summary>
     public partial class SignUpPage : Page
     {
+        private Database dbHelper = new Database();
         public SignUpPage()
         {
             InitializeComponent();
@@ -31,7 +33,13 @@ namespace LawFarm
             string password = PasswordBox.Password;
 
             // Do validation / processing
-            MessageBox.Show("Account created successfully!", "Success");
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Please fill all required fields.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            dbHelper.InsertUser(username, email, password);
         }
 
         private void LoginLink_Click(object sender, RoutedEventArgs e)
