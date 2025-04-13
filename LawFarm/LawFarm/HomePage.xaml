@@ -11,6 +11,6 @@
     <Grid Background="White" RenderTransformOrigin="0.481,0.356">
         <local:Navbar HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
         <!-- Content for Home Page -->
-        <TextBlock Text="Welcome to the Home Page" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Height="50" Width="340"/>
+        <TextBlock Text="Welcome!" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="50" Height="65" Width="297" Margin="0,80,0,0" FontFamily="Georgia" Foreground="Purple" FontWeight="Bold"/>
     </Grid>
 </Page>
