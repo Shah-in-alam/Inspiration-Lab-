@@ -1,0 +1,22 @@
+﻿<Page x:Class="LawFarm.LawerDashboard"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LawFarm"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="LawerDashboard">
+
+    <Grid Background="LightSteelBlue">
+        <Button Content="Logout" Width="80" Height="30" 
+                Background="Red" Foreground="White" FontWeight="Bold"
+                HorizontalAlignment="Right" VerticalAlignment="Top" 
+                Margin="0,10,10,0"
+                Click="Logout_Click"/>
+        <TextBlock Text="Welcome to Lawer Dashboard!" 
+                   FontSize="24" FontWeight="Bold" Foreground="DarkBlue" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+
+</Page>

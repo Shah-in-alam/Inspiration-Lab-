@@ -35,3 +35,9 @@ C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-L
 C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\Navbar.g.cs
 C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\Navbar.baml
 C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\LawerDashboard.g.cs
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\LawerDashboard.baml
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\AdminDashboard.g.cs
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\AdminDashboard.baml
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\ForgetPasswordPage.g.cs
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\ForgetPasswordPage.baml

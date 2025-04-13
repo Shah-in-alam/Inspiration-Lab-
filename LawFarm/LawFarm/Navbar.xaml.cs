@@ -28,6 +28,12 @@ namespace LawFarm
             var nav = NavigationService.GetNavigationService(this);
            // nav?.Navigate(new ReviewPage()); // Make sure ReviewPage exists
         }
+        // Logout button 
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            var nav = NavigationService.GetNavigationService(this);
+            nav?.Navigate(new StartPage());
+        }
     }
 }
 

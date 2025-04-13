@@ -23,30 +23,37 @@ namespace LawFarm
                 MessageBox.Show("Please enter both email and password.");
                 return;
             }
-            
-
-            // Hash the password before checking
-            
 
             Database dbHelper = new Database();
             string hashedPassword = dbHelper.HashPassword(password);
-            bool success = dbHelper.CheckUser(username, hashedPassword); // Pass the hashed password
 
-            if (success)
+            // Role-based priority
+            if (dbHelper.IsAdmin(username, password))
+            {
+                MessageBox.Show("Welcome Admin!");
+                NavigationService?.Navigate(new AdminDashboard());
+            }
+            else if (dbHelper.IsLawer(username, password))
+            {
+                MessageBox.Show("Welcome Lawer!");
+                NavigationService?.Navigate(new LawerDashboard());
+            }
+            else if (dbHelper.CheckUser(username, hashedPassword)) // normal user
             {
                 MessageBox.Show("Login successful!");
-                NavigationService?.Navigate(new HomePage()); // or wherever you go
+                NavigationService?.Navigate(new HomePage());
             }
             else
             {
                 MessageBox.Show("Invalid username or password.");
             }
+        
         }
 
         private void ForgotPasswordLink_Click(object sender, RoutedEventArgs e)
         {
             // Navigate to ForgotPasswordPage or show a message
-            MessageBox.Show("Password reset instructions have been sent to your email.", "Password Reset");
+            NavigationService?.Navigate(new ForgetPasswordPage());
         }
 
         private void BackToStartPage_Click(object sender, RoutedEventArgs e)

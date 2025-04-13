@@ -1,60 +1,67 @@
 ﻿<UserControl x:Class="LawFarm.Navbar"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Height="60">
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Background="SkyBlue">
-        <Button Content="Home" Width="180" Margin="5" Click="HomeButton_Click">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="Black"/>
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="BorderBrush" Value="Black"/>
-                    <Setter Property="Height" Value="40"/>
-                    <Setter Property="Width" Value="180"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="White"/>
-                            <Setter Property="Foreground" Value="Black"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+             Height="35" Width="475">
 
-        <Button Content="Booking" Width="180" Margin="5" Click="BookingButton_Click">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="Black"/>
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="BorderBrush" Value="Black"/>
-                    <Setter Property="Height" Value="40"/>
-                    <Setter Property="Width" Value="180"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="White"/>
-                            <Setter Property="Foreground" Value="Black"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+    <UserControl.Resources>
+        <!-- Compact fancy nav button style -->
+        <Style x:Key="FancyNavButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#34495E"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Width" Value="85"/>
+            <Setter Property="Margin" Value="4,0,4,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="5"
+                                Padding="2"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#2ECC71"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
 
-        <Button Content="Review" Width="180" Margin="5" Click="ReviewButton_Click">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="Black"/>
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="BorderBrush" Value="Black"/>
-                    <Setter Property="Height" Value="40"/>
-                    <Setter Property="Width" Value="180"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="White"/>
-                            <Setter Property="Foreground" Value="Black"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
+    <!-- Navbar Layout -->
+    <DockPanel Height="35">
+        <!-- Gradient background -->
+        <DockPanel.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Color="#2980B9" Offset="0.0"/>
+                <GradientStop Color="#6DD5FA" Offset="1.0"/>
+            </LinearGradientBrush>
+        </DockPanel.Background>
+
+        <!-- Left buttons -->
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Center">
+            <Button Content="Home" Click="HomeButton_Click" Style="{StaticResource FancyNavButtonStyle}"/>
+            <Button Content="Booking" Click="BookingButton_Click" Style="{StaticResource FancyNavButtonStyle}"/>
+            <Button Content="Review" Click="ReviewButton_Click" Style="{StaticResource FancyNavButtonStyle}"/>
+        </StackPanel>
+
+        <!-- Logout Button (Compact) -->
+        <Button Content="Logout" Width="51" Height="24"
+                Background="#E74C3C" Foreground="White" FontWeight="Bold" FontSize="11"
+                Margin="8,0,10,0" Cursor="Hand"
+                Click="Logout_Click"
+                DockPanel.Dock="Right">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="2" BlurRadius="4" Direction="270" Opacity="0.3"/>
+            </Button.Effect>
         </Button>
-    </StackPanel>
+    </DockPanel>
 </UserControl>

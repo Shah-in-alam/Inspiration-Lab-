@@ -1,58 +1,30 @@
 ﻿<Page x:Class="LawFarm.SignUpPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="SignUpPage" Width="490">
+      Title="SignUpPage" Width="800" Height="640">
 
-    <Grid Background="#f0f0f0" Height="715" Margin="-110,0,-210,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0*"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="82*"/>
-            <ColumnDefinition Width="85*"/>
-        </Grid.ColumnDefinitions>
-        <!-- Centered Box with Padding and Space Around -->
-        <Border Width="362" Padding="30" Background="White" CornerRadius="10" 
-                HorizontalAlignment="Left" VerticalAlignment="Center" 
-                BorderBrush="#CCCCCC" BorderThickness="1" Height="410" Margin="224,0,0,0" Grid.ColumnSpan="2" Grid.Row="1">
+    <Grid Background="LightGreen" Margin="-280,-20,-310,-65">
+        <Image Source="Images/Main.jpg" Margin="478,-8,0,478" HorizontalAlignment="Left" Width="394"/>
+
+        <Border Width="434" Padding="30" Background="White" CornerRadius="10" 
+                HorizontalAlignment="Left" VerticalAlignment="Top"
+                BorderBrush="#CCCCCC" BorderThickness="1" Height="400" Margin="458,200,0,0">
             <StackPanel>
-                <!-- Title -->
-                <TextBlock Text="Create an Account"
-                           FontSize="20"
-                           FontWeight="Bold"
-                           Margin="0,0,0,20"
-                           HorizontalAlignment="Center"/>
-
-                <!-- Username -->
-                <TextBlock Text="Username" Margin="0,0,0,5"/>
+                <TextBlock Text="Create an Account" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
+                <TextBlock Text="Username" FontWeight="Bold" />
                 <TextBox x:Name="UsernameBox" Height="30" Margin="0,0,0,10"/>
-
-                <!-- Email -->
-                <TextBlock Text="Email" Margin="0,0,0,5"/>
+                <TextBlock Text="Email" FontWeight="Bold"/>
                 <TextBox x:Name="EmailBox" Height="30" Margin="0,0,0,10"/>
-
-                <!-- Password -->
-                <TextBlock Text="Password" Margin="0,0,0,5"/>
-                <PasswordBox x:Name="PasswordBox" Height="30" Margin="0,0,0,20" Width="299"/>
-
-                <!-- Submit Button -->
-                <Button Content="Submit"
-                        Height="35"
-                        Background="#007ACC"
-                        Foreground="White"
-                        FontWeight="Bold"
-                        Click="Submit_Click" Width="139"/>
-
-                <!-- Already have an account -->
+                <TextBlock Text="Password" FontWeight="Bold" />
+                <PasswordBox x:Name="PasswordBox" Height="30" Margin="0,0,0,20"/>
+                <Button Content="Submit" Width="140" Height="35" Background="#007ACC" Foreground="White" FontWeight="Bold" Click="Submit_Click"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <TextBlock Text="Already have an account? " />
-                    <TextBlock>
-                        <Hyperlink Click="LoginLink_Click">Login</Hyperlink>
-                    </TextBlock>
+                    <TextBlock Text="Already have an account? " FontWeight="Bold"/>
+                    <TextBlock><Hyperlink Click="LoginLink_Click" FontWeight="Bold">Login</Hyperlink></TextBlock>
                 </StackPanel>
             </StackPanel>
         </Border>
     </Grid>
 </Page>
+
 

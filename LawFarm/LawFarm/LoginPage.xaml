@@ -3,11 +3,12 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="LoginPage" Width="550" Height="475">
 
-    <Grid Background="#f0f0f0">
+    <Grid Background="LightGreen" Margin="-395,-125,-400,-90">
+        <Image Source="Images/Main.jpg" Margin="470,9,470,538"/>
         <!-- Centered Box with Padding and Space Around -->
         <Border Width="350" Padding="30" Background="White" CornerRadius="10" 
                 HorizontalAlignment="Center" VerticalAlignment="Top" 
-                BorderBrush="#CCCCCC" BorderThickness="1" Height="345" Margin="0,130,0,0">
+                BorderBrush="#CCCCCC" BorderThickness="1" Height="350" Margin="0,155,0,0">
             <StackPanel>
                 <!-- Title -->
                 <TextBlock Text="Sign In"
@@ -17,11 +18,11 @@
                            HorizontalAlignment="Center"/>
 
                 <!-- Username -->
-                <TextBlock Text="Username" Margin="0,0,0,5"/>
+                <TextBlock Text="Username" Margin="0,0,0,5" FontWeight="Bold"/>
                 <TextBox x:Name="UsernameBox" Height="30" Margin="0,0,0,10"/>
 
                 <!-- Password -->
-                <TextBlock Text="Password" Margin="0,0,0,5"/>
+                <TextBlock Text="Password" Margin="0,0,0,5" FontWeight="Bold"/>
                 <PasswordBox x:Name="PasswordBox" Height="30" Margin="0,0,0,20"/>
 
                 <!-- Sign In Button -->
@@ -30,21 +31,21 @@
                         Background="#007ACC"
                         Foreground="White"
                         FontWeight="Bold"
-                        Click="SignIn_Click"/>
+                        Click="SignIn_Click" />
 
                 <!-- Forgot Password Link -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <TextBlock Text="Forgot Password? " />
+                    <TextBlock Text="Forgot Password? " FontWeight="Bold"/>
                     <TextBlock>
-                        <Hyperlink Click="ForgotPasswordLink_Click">Click Here</Hyperlink>
+                        <Hyperlink Click="ForgotPasswordLink_Click" FontWeight="Bold">Click Here</Hyperlink>
                     </TextBlock>
                 </StackPanel>
 
                 <!-- Go Back to Start Page Link -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <TextBlock Text="Don't have an account? " />
+                    <TextBlock Text="Don't have an account? " FontWeight="Bold"/>
                     <TextBlock>
-                        <Hyperlink Click="BackToStartPage_Click">Back to Start</Hyperlink>
+                        <Hyperlink Click="BackToStartPage_Click" FontWeight="Bold">Back to Start</Hyperlink>
                     </TextBlock>
                 </StackPanel>
             </StackPanel>

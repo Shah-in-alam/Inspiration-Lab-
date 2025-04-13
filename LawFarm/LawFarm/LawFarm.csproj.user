@@ -7,7 +7,16 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="AdminDashboard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ForgetPasswordPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="HomePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="LawerDashboard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="LoginPage.xaml.cs">
@@ -24,7 +33,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="AdminDashboard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ForgetPasswordPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="HomePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="LawerDashboard.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="LoginPage.xaml">

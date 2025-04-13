@@ -31,6 +31,21 @@ namespace LawFarm
             string username = UsernameBox.Text.Trim();
             string email = EmailBox.Text.Trim();
             string password = PasswordBox.Password;
+            bool isAdmin = email.ToLower().EndsWith(".admin@gmail.com");
+            bool isLawer = email.ToLower().EndsWith(".lawer@gmail.com");
+
+            //lawer define
+            //if (isLawer)
+            //{
+            //    string[] parts=email.Split('.');
+            //    if (parts.Length > 0)
+            //    {
+
+            //        string nameParts=parts[0];
+            //        username = char.ToUpper(nameParts[0])+nameParts.Substring(1);
+
+            //    }   
+            //}
 
             // Do validation / processing
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
@@ -39,7 +54,7 @@ namespace LawFarm
                 return;
             }
 
-            dbHelper.InsertUser(username, email, password);
+            dbHelper.InsertUser(username, email, password,isAdmin,isLawer);
         }
 
         private void LoginLink_Click(object sender, RoutedEventArgs e)
