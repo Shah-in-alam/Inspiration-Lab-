@@ -20,13 +20,13 @@ namespace LawFarm
         private void BookingButton_Click(object sender, RoutedEventArgs e)
         {
             var nav = NavigationService.GetNavigationService(this);
-           // nav?.Navigate(new BookingPage()); // Make sure BookingPage exists
+            nav?.Navigate(new BookingPage()); // Make sure BookingPage exists
         }
 
         private void ReviewButton_Click(object sender, RoutedEventArgs e)
         {
             var nav = NavigationService.GetNavigationService(this);
-           // nav?.Navigate(new ReviewPage()); // Make sure ReviewPage exists
+            nav?.Navigate(new ReviewPage()); // Make sure ReviewPage exists
         }
         // Logout button 
         private void Logout_Click(object sender, RoutedEventArgs e)

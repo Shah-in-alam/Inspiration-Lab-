@@ -41,3 +41,9 @@ C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-L
 C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\AdminDashboard.baml
 C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\ForgetPasswordPage.g.cs
 C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\ForgetPasswordPage.baml
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\BookingPage.g.cs
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\BookingPage.baml
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\ReviewPage.g.cs
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\ReviewPage.baml
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\Appointment.g.cs
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\Appointment.baml

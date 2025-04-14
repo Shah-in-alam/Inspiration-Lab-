@@ -1,0 +1,56 @@
+﻿<Page x:Class="LawFarm.BookingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LawFarm"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="BookingPage">
+
+    <Grid Background="White">
+
+        <!-- Top Navbar -->
+        <local:Navbar HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+
+        <!-- Main layout -->
+        <Grid Margin="0,50,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <!-- Filter Panel -->
+                <ColumnDefinition Width="*"/>
+                <!-- Main Content -->
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Filter Panel -->
+            <StackPanel Grid.Column="0" Background="#F0F0F0" Margin="25,10,0,145">
+                <TextBlock Text="Filter by Type" FontWeight="Bold" FontSize="16" Margin="0,10,0,20"/>
+
+                <CheckBox Content="Criminal" Margin="0,5"/>
+                <CheckBox Content="Civil" Margin="0,5"/>
+                <CheckBox Content="Divorce" Margin="0,5" Height="14"/>
+                <CheckBox Content="Immigration" Margin="0,5"/>
+                <CheckBox Content="Corporate" Margin="0,5"/>
+                <CheckBox Content="Family Law" Margin="0,5"/>
+                <CheckBox Content="Intellectual Property" Margin="0,5"/>
+            </StackPanel>
+
+            <!-- Right Main Content Area -->
+            <Grid Grid.Column="1" Margin="10">
+                <StackPanel>
+                    <!-- Title -->
+                    <TextBlock Text="Lawyers" HorizontalAlignment="Center" FontSize="50" FontFamily="Georgia" Foreground="Purple" FontWeight="Bold" Margin="0,20,0,0"/>
+                    <TextBlock Text="Select your choice" HorizontalAlignment="Center" FontSize="20" FontFamily="Georgia" FontWeight="SemiBold" Margin="0,10,0,20"/>
+
+                    <!-- Other booking content goes here -->
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <!-- Bottom Book Now Button -->
+        <Button Content="Book Now" Height="40" Width="90"
+                Background="Purple" Foreground="White" FontWeight="Bold"
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="535,0,0,10"
+                Click="BookNow_Click"/>
+    </Grid>
+</Page>

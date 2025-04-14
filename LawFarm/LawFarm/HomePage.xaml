@@ -12,5 +12,6 @@
         <local:Navbar HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
         <!-- Content for Home Page -->
         <TextBlock Text="Welcome!" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="50" Height="65" Width="297" Margin="0,80,0,0" FontFamily="Georgia" Foreground="Purple" FontWeight="Bold"/>
+        <TextBlock Text="Top Rated" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" Height="75" Width="220" Margin="0,150,0,0" FontFamily="Georgia" Foreground="Black" FontWeight="Bold"/>
     </Grid>
 </Page>
