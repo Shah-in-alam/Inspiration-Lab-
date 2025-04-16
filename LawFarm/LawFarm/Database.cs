@@ -12,6 +12,8 @@ namespace LawFarm
     class Database
     {
         private string connectionString = "server=localhost;user id=root;password=;database=Lawdb";
+        //-------------------------------------------------------------------------------------------------
+        //PASSWORD HASSING
         public string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -25,6 +27,8 @@ namespace LawFarm
                 return builder.ToString();
             }
         }
+        //-----------------------------------------------------------------------------------------------------------
+        //USER DATA ENTRY POINT
         public void InsertUser(string username, string email, string password,bool isAdmin, bool isLawer)
         {
             try
@@ -56,6 +60,7 @@ namespace LawFarm
 
             }
         }
+        //------------------------------------------------------------------------------------------------------------
         // USER AUTHENTICATION NORMAL USER
         public bool CheckUser(string username, string hashedPassword)
         {
@@ -72,6 +77,7 @@ namespace LawFarm
                 }
             }
         }
+        //-----------------------------------------------------------------------------------------------------------
         //LAWER AUTHENTICATION 
         public bool IsLawer(string username, string password)
         {
@@ -94,6 +100,7 @@ namespace LawFarm
                 }
             }
         }
+        //----------------------------------------------------------------------------------------------------------
         //ADMIN AUTHENTICATION 
         public bool IsAdmin(string username, string password)
         {
@@ -116,6 +123,7 @@ namespace LawFarm
                 }
             }
         }
+        //-----------------------------------------------------------------------------------------------------
         //CHANGE PASSWORD
         public bool UpdatePasswordByEmail(string email, string newPassword)
         {
@@ -136,6 +144,7 @@ namespace LawFarm
                 }
             }
         }
+        //-------------------------------------------------------------------------------------------------------------
         //LAWERS DATA
         public void InsertLawyer(string lawyerId, string fullName, string address, string contact, string[] categories)
         {
@@ -167,6 +176,7 @@ namespace LawFarm
                 MessageBox.Show("Database Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        //---------------------------------------------------------------------------------------------------------------------
         //IF LAWER already input his details 
         public bool LawyerExists(string lawyerId)
         {
@@ -191,6 +201,7 @@ namespace LawFarm
                 return false;
             }
         }
+        //----------------------------------------------------------------------------------------------------------------------
     }
 
 
