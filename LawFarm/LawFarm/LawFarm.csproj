@@ -9,7 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\ai me.jpg" />
     <None Remove="Images\Main.jpg" />
+    <None Remove="Images\New.jpg" />
+    <None Remove="Images\picture.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +21,9 @@
 
   <ItemGroup>
     <Resource Include="Images\Main.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\New.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

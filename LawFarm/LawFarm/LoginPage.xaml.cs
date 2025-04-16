@@ -36,7 +36,8 @@ namespace LawFarm
             else if (dbHelper.IsLawer(username, password))
             {
                 MessageBox.Show("Welcome Lawer!");
-                NavigationService?.Navigate(new LawerDashboard());
+                NavigationService.Navigate(new LawerDashboard(username));
+
             }
             else if (dbHelper.CheckUser(username, hashedPassword)) // normal user
             {

@@ -136,6 +136,61 @@ namespace LawFarm
                 }
             }
         }
+        //LAWERS DATA
+        public void InsertLawyer(string lawyerId, string fullName, string address, string contact, string[] categories)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "INSERT INTO lawyers (lawyer_id, full_name, address, contact, categories) " +
+                                   "VALUES (@lawyerId, @fullName, @address, @contact, @categories)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@lawyerId", lawyerId);
+                        cmd.Parameters.AddWithValue("@fullName", fullName);
+                        cmd.Parameters.AddWithValue("@address", address);
+                        cmd.Parameters.AddWithValue("@contact", contact);
+                        cmd.Parameters.AddWithValue("@categories", string.Join(", ", categories));
+                        
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Lawyer details saved to database!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Database Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        //IF LAWER already input his details 
+        public bool LawyerExists(string lawyerId)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT COUNT(*) FROM lawyers WHERE lawyer_id = @lawyerId";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@lawyerId", lawyerId);
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        return count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Database Error: " + ex.Message);
+                return false;
+            }
+        }
     }
 
 

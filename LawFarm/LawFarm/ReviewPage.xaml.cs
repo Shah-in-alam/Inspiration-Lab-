@@ -24,5 +24,37 @@ namespace LawFarm
         {
             InitializeComponent();
         }
+        private void SubmitReview_Click(object sender, RoutedEventArgs e)
+        {
+            string userName = UserNameBox.Text.Trim();
+            string lawyerName = LawyerNameBox.Text.Trim();
+            string lawyerId = LawyerIdBox.Text.Trim();
+            string rating = (RatingBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+            string description = DescriptionBox.Text.Trim();
+
+            // Simple validation
+            if (string.IsNullOrWhiteSpace(userName) ||
+                string.IsNullOrWhiteSpace(lawyerName) ||
+                string.IsNullOrWhiteSpace(lawyerId) ||
+                string.IsNullOrWhiteSpace(rating) ||
+                string.IsNullOrWhiteSpace(description))
+            {
+                MessageBox.Show("Please fill in all fields before submitting the review.",
+                                "Missing Information", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // TODO: Save to database here
+
+            MessageBox.Show("Thank you for your feedback!",
+                            "Review Submitted", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            // Optional: clear fields after submission
+            UserNameBox.Clear();
+            LawyerNameBox.Clear();
+            LawyerIdBox.Clear();
+            RatingBox.SelectedIndex = -1;
+            DescriptionBox.Clear();
+        }
     }
 }

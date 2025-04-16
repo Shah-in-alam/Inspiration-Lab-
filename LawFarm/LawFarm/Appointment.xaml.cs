@@ -27,7 +27,21 @@ namespace LawFarm
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Booking is successful.");
+            string name = NameBox.Text.Trim();
+            string lawyerId = LawyerIdBox.Text.Trim();
+            string date = DatePicker.SelectedDate?.ToShortDateString() ?? "";
+            string description = DescriptionBox.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(name) ||
+                string.IsNullOrWhiteSpace(lawyerId) ||
+                string.IsNullOrWhiteSpace(date) ||
+                string.IsNullOrWhiteSpace(description))
+            {
+                MessageBox.Show("Please fill out all fields.", "Missing Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            MessageBox.Show("Appointment confirmed!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
