@@ -20,14 +20,21 @@ namespace LawFarm
     /// </summary>
     public partial class BookingPage : Page
     {
+        private Database db = new Database();
         public BookingPage()
         {
             InitializeComponent();
+            LoadLawyersFromDB();
         }
         private void BookNow_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("Booking submitted!", "Success");
             this.NavigationService.Navigate(new Appointment());
+        }
+        private void LoadLawyersFromDB()
+        {
+            var lawyers = db.GetLawyersWithRatings();
+            LawyerListPanel.ItemsSource = lawyers;
         }
 
     }

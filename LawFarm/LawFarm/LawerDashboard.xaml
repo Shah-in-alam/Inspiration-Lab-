@@ -34,6 +34,7 @@
             <TextBlock Text="Lawyer ID:" FontWeight="Bold"/>
             <TextBox x:Name="LawyerIdBox" Height="30" Margin="0,5,0,10"/>
 
+            
             <!-- Full Name -->
             <TextBlock Text="Full Name:" FontWeight="Bold"/>
             <TextBox x:Name="FullNameBox" Height="30" Margin="0,5,0,10"/>

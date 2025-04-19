@@ -29,14 +29,14 @@ namespace LawFarm
             string userName = UserNameBox.Text.Trim();
             string lawyerName = LawyerNameBox.Text.Trim();
             string lawyerId = LawyerIdBox.Text.Trim();
-            string rating = (RatingBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+            string ratingStr = (RatingBox.SelectedItem as ComboBoxItem)?.Content.ToString();
             string description = DescriptionBox.Text.Trim();
 
             // Simple validation
             if (string.IsNullOrWhiteSpace(userName) ||
-                string.IsNullOrWhiteSpace(lawyerName) ||
+                string.IsNullOrWhiteSpace(lawyerName) ||    
                 string.IsNullOrWhiteSpace(lawyerId) ||
-                string.IsNullOrWhiteSpace(rating) ||
+                string.IsNullOrWhiteSpace(ratingStr) ||
                 string.IsNullOrWhiteSpace(description))
             {
                 MessageBox.Show("Please fill in all fields before submitting the review.",
@@ -45,6 +45,11 @@ namespace LawFarm
             }
 
             // TODO: Save to database here
+            int rating = int.Parse(ratingStr);
+
+            // Save to database
+            Database db = new Database();
+            db.InsertReview(userName, lawyerName, lawyerId, rating, description);
 
             MessageBox.Show("Thank you for your feedback!",
                             "Review Submitted", MessageBoxButton.OK, MessageBoxImage.Information);

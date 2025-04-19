@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Security.Cryptography;
+using static LawFarm.BookingPage;
 
 namespace LawFarm
 {
@@ -62,19 +63,29 @@ namespace LawFarm
         }
         //------------------------------------------------------------------------------------------------------------
         // USER AUTHENTICATION NORMAL USER
-        public bool CheckUser(string username, string hashedPassword)
+        public int GetUserId(string username, string hashedPassword)
         {
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                string query = "SELECT COUNT(*) FROM users WHERE username = @username AND password = @password";
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
-                    cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@password", hashedPassword); // Comparing hash
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
-                    return count > 0;
+                    conn.Open();
+                    string query = "SELECT id FROM users WHERE username = @username AND password = @password";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@username", username);
+                        cmd.Parameters.AddWithValue("@password", hashedPassword);
+
+                        object result = cmd.ExecuteScalar();
+                        return result != null && result != DBNull.Value ? Convert.ToInt32(result) : -1;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Database Error: " + ex.Message);
+                return -1;
             }
         }
         //-----------------------------------------------------------------------------------------------------------
@@ -146,15 +157,15 @@ namespace LawFarm
         }
         //-------------------------------------------------------------------------------------------------------------
         //LAWERS DATA
-        public void InsertLawyer(string lawyerId, string fullName, string address, string contact, string[] categories)
+        public void InsertLawyer(string lawyerId, string fullName, string address, string contact, string[] categories,int userId)
         {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "INSERT INTO lawyers (lawyer_id, full_name, address, contact, categories) " +
-                                   "VALUES (@lawyerId, @fullName, @address, @contact, @categories)";
+                    string query = "INSERT INTO lawyers (lawyer_id, full_name, address, contact, categories,user_id) " +
+                                   "VALUES (@lawyerId, @fullName, @address, @contact, @categories,@userId)";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -163,12 +174,14 @@ namespace LawFarm
                         cmd.Parameters.AddWithValue("@address", address);
                         cmd.Parameters.AddWithValue("@contact", contact);
                         cmd.Parameters.AddWithValue("@categories", string.Join(", ", categories));
+                        cmd.Parameters.AddWithValue("@userId",userId);
                         
 
                         cmd.ExecuteNonQuery();
                     }
 
                     MessageBox.Show("Lawyer details saved to database!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    
                 }
             }
             catch (Exception ex)
@@ -178,30 +191,99 @@ namespace LawFarm
         }
         //---------------------------------------------------------------------------------------------------------------------
         //IF LAWER already input his details 
-        public bool LawyerExists(string lawyerId)
+        public bool LawyerExists(int userId)
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM lawyers WHERE user_id = @userId";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+        //----------------------------------------------------------------------------------------------------------------------
+        //REVIEW SAVING IN THE DATABASE
+        
+        public void InsertReview(string userName, string lawyerName, string lawyerId, int rating, string description)
         {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT COUNT(*) FROM lawyers WHERE lawyer_id = @lawyerId";
+                    string query = "INSERT INTO reviews (user_name, lawyer_name, lawyer_id, rating, description) " +
+                                   "VALUES (@userName, @lawyerName, @lawyerId, @rating, @description)";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@userName", userName);
+                        cmd.Parameters.AddWithValue("@lawyerName", lawyerName);
                         cmd.Parameters.AddWithValue("@lawyerId", lawyerId);
-                        int count = Convert.ToInt32(cmd.ExecuteScalar());
-                        return count > 0;
+                        cmd.Parameters.AddWithValue("@rating", rating);
+                        cmd.Parameters.AddWithValue("@description", description);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Database Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        ///----------------------------------------------------------------------------------------------------------
+        ///LAWYER DISPLAY IN BOOKING WINDOW: 
+        public List<LawyerDisplayModel> GetLawyersWithRatings()
+        {
+            List<LawyerDisplayModel> lawyers = new List<LawyerDisplayModel>();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = @"
+                SELECT 
+                    l.lawyer_id,
+                    l.full_name,
+                    COALESCE(AVG(r.rating), 0) AS average_rating
+                FROM 
+                    lawyers l
+                LEFT JOIN 
+                    reviews r ON l.lawyer_id = r.lawyer_id
+                GROUP BY 
+                    l.lawyer_id, l.full_name";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var model = new LawyerDisplayModel
+                            {
+                                LawyerId = reader["lawyer_id"].ToString(),
+                                FullName = reader["full_name"].ToString(),
+                                Rating = Convert.ToDouble(reader["average_rating"]).ToString("0") // Round off
+                            };
+                            lawyers.Add(model);
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Database Error: " + ex.Message);
-                return false;
             }
+
+            return lawyers;
         }
-        //----------------------------------------------------------------------------------------------------------------------
+
+
     }
 
 

@@ -32,7 +32,7 @@ namespace LawFarm
             string email = EmailBox.Text.Trim();
             string password = PasswordBox.Password;
             bool isAdmin = email.ToLower().EndsWith(".admin@gmail.com");
-            bool isLawer = email.ToLower().EndsWith(".lawer@gmail.com");
+            bool isLawer = email.ToLower().EndsWith(".lawyer@gmail.com");
 
             //lawer define
             //if (isLawer)

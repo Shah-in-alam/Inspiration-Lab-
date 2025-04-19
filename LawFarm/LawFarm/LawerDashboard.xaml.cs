@@ -21,11 +21,9 @@ namespace LawFarm
     public partial class LawerDashboard : Page
     {
         private Database db = new Database();
-        private string loggedInLawyerId;
-        public LawerDashboard()
-        {
-            InitializeComponent();
-        }
+        private int userId;
+
+       
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             NavigationService?.Navigate(new StartPage());
@@ -40,7 +38,7 @@ namespace LawFarm
                                         .OfType<ListBoxItem>()
                                         .Select(item => item.Content.ToString())
                                         .ToArray();
-            
+
 
             if (string.IsNullOrWhiteSpace(lawyerId) || string.IsNullOrWhiteSpace(fullName)
                 || string.IsNullOrWhiteSpace(address) || string.IsNullOrWhiteSpace(contact)
@@ -51,26 +49,25 @@ namespace LawFarm
             }
 
             // Save to database
-            db.InsertLawyer(lawyerId, fullName, address, contact, categories);
+            db.InsertLawyer(lawyerId, fullName, address, contact, categories,userId);
 
             // Hide the form
             FormPanel.Visibility = Visibility.Collapsed;
         }
-        public LawerDashboard(string lawyerId) // constructor receives current login
+        public LawerDashboard(int id)
         {
             InitializeComponent();
-            loggedInLawyerId = lawyerId;
+            userId = id;
 
-            // Check if details exist
-            if (db.LawyerExists(loggedInLawyerId))
+            if (db.LawyerExists(userId))
             {
                 FormPanel.Visibility = Visibility.Collapsed;
-                MessageBox.Show("Welcome back! Your details are already submitted.");
             }
             else
             {
                 FormPanel.Visibility = Visibility.Visible;
             }
+
         }
     }
 }
