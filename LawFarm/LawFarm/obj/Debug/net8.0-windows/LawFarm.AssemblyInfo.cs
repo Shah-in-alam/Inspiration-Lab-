@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LawFarm")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b015e62fa8b42166ead0b8349fd19133ade30864")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c6418d97b3f89a609d177af48b4652d3e246ac50")]
 [assembly: System.Reflection.AssemblyProductAttribute("LawFarm")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LawFarm")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
