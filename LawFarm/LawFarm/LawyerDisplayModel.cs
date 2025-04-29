@@ -10,6 +10,7 @@ namespace LawFarm
     {
         public string LawyerId { get; set; }
         public string FullName { get; set; }
+        public string Categories { get; set; }
         public string Rating { get; set; }
     }
 }

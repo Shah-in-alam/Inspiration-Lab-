@@ -36,6 +36,26 @@ namespace LawFarm
             var lawyers = db.GetLawyersWithRatings();
             LawyerListPanel.ItemsSource = lawyers;
         }
+        private void ApplyFilter_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedCategories = new List<string>();
+
+            if (CriminalCheckBox.IsChecked == true) selectedCategories.Add("Criminal");
+            if (CivilCheckBox.IsChecked == true) selectedCategories.Add("Civil");
+            if (DivorceCheckBox.IsChecked == true) selectedCategories.Add("Divorce");
+            if (ImmigrationCheckBox.IsChecked == true) selectedCategories.Add("Immigration");
+            if (CorporateCheckBox.IsChecked == true) selectedCategories.Add("Corporate");
+            if (FamilyCheckBox.IsChecked == true) selectedCategories.Add("Family Law");
+            if (IPCheckBox.IsChecked == true) selectedCategories.Add("Intellectual Property");
+
+            var allLawyers = new Database().GetLawyersWithRatings();
+
+            // Filter logic: check if any selected category exists in the lawyer's categories
+            var filtered = allLawyers.Where(l =>
+                selectedCategories.Any(cat => l.Categories?.ToLower().Contains(cat.ToLower()) == true)).ToList();
+
+            LawyerListPanel.ItemsSource = filtered;
+        }
 
     }
 }

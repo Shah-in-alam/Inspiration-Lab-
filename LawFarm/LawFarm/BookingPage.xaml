@@ -9,7 +9,6 @@
       Title="BookingPage">
 
     <Grid Background="White">
-
         <!-- Top Navbar -->
         <local:Navbar HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
 
@@ -23,32 +22,34 @@
             </Grid.ColumnDefinitions>
 
             <!-- Left Filter Panel -->
-            <StackPanel Grid.Column="0" Background="#F0F0F0" Margin="25,10,0,145">
+            <StackPanel Grid.Column="0" Background="#F0F0F0" Margin="25,10,0,137">
                 <TextBlock Text="Filter by Type" FontWeight="Bold" FontSize="16" Margin="0,10,0,20"/>
-
-                <CheckBox Content="Criminal" Margin="0,5"/>
-                <CheckBox Content="Civil" Margin="0,5"/>
-                <CheckBox Content="Divorce" Margin="0,5" Height="14"/>
-                <CheckBox Content="Immigration" Margin="0,5"/>
-                <CheckBox Content="Corporate" Margin="0,5"/>
-                <CheckBox Content="Family Law" Margin="0,5"/>
-                <CheckBox Content="Intellectual Property" Margin="0,5"/>
+                <CheckBox x:Name="CriminalCheckBox" Content="Criminal" Margin="0,5"/>
+                <CheckBox x:Name="CivilCheckBox" Content="Civil" Margin="0,5"/>
+                <CheckBox x:Name="DivorceCheckBox" Content="Divorce" Margin="0,5"/>
+                <CheckBox x:Name="ImmigrationCheckBox" Content="Immigration" Margin="0,5"/>
+                <CheckBox x:Name="CorporateCheckBox" Content="Corporate" Margin="0,5"/>
+                <CheckBox x:Name="FamilyCheckBox" Content="Family Law" Margin="0,5"/>
+                <CheckBox x:Name="IPCheckBox" Content="Intellectual Property" Margin="0,5"/>
             </StackPanel>
+            <Button Content="Apply Filter" Width="120" Height="30" Margin="25,255,55,115"
+                            Background="DarkSlateBlue" Foreground="White" FontWeight="Bold"
+                            Click="ApplyFilter_Click"/>
+
 
             <!-- Right Main Content Area -->
-            <Grid Grid.Column="1" Margin="10">
+            <ScrollViewer Grid.Column="1" Margin="10" VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <!-- Title -->
                     <TextBlock Text="Lawyers" HorizontalAlignment="Center" FontSize="50" FontFamily="Georgia" Foreground="Purple" FontWeight="Bold" Margin="0,20,0,0"/>
                     <TextBlock Text="Select your choice" HorizontalAlignment="Center" FontSize="20" FontFamily="Georgia" FontWeight="SemiBold" Margin="0,10,0,20"/>
 
-                    <!-- Other booking content goes here -->
+                    <!-- Lawyer List -->
                     <ItemsControl x:Name="LawyerListPanel" Margin="20,10,20,0">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="0,10,0,0" Background="#FAFAFA" Padding="10">
+                                <Border BorderBrush="#DDDDDD" BorderThickness="1" CornerRadius="10" Padding="12" Margin="0,10,0,0" Background="#F9F9F9">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-
                                         <Ellipse Width="60" Height="60" Stroke="Gray" StrokeThickness="1" Margin="0,0,15,0">
                                             <Ellipse.Fill>
                                                 <ImageBrush ImageSource="Images/New.jpg" Stretch="Fill"/>
@@ -56,15 +57,19 @@
                                         </Ellipse>
 
                                         <StackPanel>
-                                            <TextBlock Text="{Binding FullName}" FontWeight="Bold" FontSize="16"/>
-                                            <TextBlock>
-                            <Run Text="ID: " FontWeight="SemiBold" />
-                            <Run Text="{Binding LawyerId}"/>
+                                            <TextBlock Text="{Binding FullName}" FontWeight="Bold" FontSize="16" Foreground="#333"/>
+                                            <TextBlock Foreground="Gray">
+                                                <Run Text="Category: " FontWeight="SemiBold"/>
+                                                <Run Text="{Binding Categories}"/>
                                             </TextBlock>
-                                            <TextBlock>
-                            <Run Text="Rating: " FontWeight="SemiBold"/>
-                            <Run Text="{Binding Rating}"/>
-                            <Run Text="%"/>
+                                            <TextBlock Foreground="#555">
+                                                <Run Text="ID: " FontWeight="SemiBold"/>
+                                                <Run Text="{Binding LawyerId}"/>
+                                            </TextBlock>
+                                            <TextBlock Foreground="DarkGreen">
+                                                <Run Text="Rating: " FontWeight="SemiBold"/>
+                                                <Run Text="{Binding Rating}"/>
+                                                <Run Text="%" />
                                             </TextBlock>
                                         </StackPanel>
                                     </StackPanel>
@@ -73,7 +78,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </StackPanel>
-            </Grid>
+            </ScrollViewer>
         </Grid>
 
         <!-- Bottom Book Now Button -->

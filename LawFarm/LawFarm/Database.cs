@@ -251,13 +251,14 @@ namespace LawFarm
                 SELECT 
                     l.lawyer_id,
                     l.full_name,
+                    l.categories,
                     COALESCE(AVG(r.rating), 0) AS average_rating
                 FROM 
                     lawyers l
                 LEFT JOIN 
                     reviews r ON l.lawyer_id = r.lawyer_id
                 GROUP BY 
-                    l.lawyer_id, l.full_name";
+                    l.lawyer_id, l.full_name,l.categories";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -268,6 +269,7 @@ namespace LawFarm
                             {
                                 LawyerId = reader["lawyer_id"].ToString(),
                                 FullName = reader["full_name"].ToString(),
+                                Categories = reader["categories"].ToString(),
                                 Rating = Convert.ToDouble(reader["average_rating"]).ToString("0") // Round off
                             };
                             lawyers.Add(model);
