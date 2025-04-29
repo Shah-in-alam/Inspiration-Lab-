@@ -9,6 +9,7 @@
       Title="HomePage">
 
     <Grid Background="White" Margin="0,0,0,-140">
+
         <!-- Navbar -->
         <local:Navbar HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
 
@@ -23,38 +24,10 @@
                FontFamily="Georgia" Foreground="Black" FontWeight="Bold"/>
 
         <!-- Horizontal StackPanel for lawyers -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,130,0,0">
-
-            <!-- Lawyer 1 -->
-            <StackPanel Width="180" HorizontalAlignment="Center" Margin="20,0">
-                <Border Width="150" Height="150" CornerRadius="75"
-            ClipToBounds="True" BorderBrush="Gray" BorderThickness="2">
-                    <Image Source="Images/New.jpg" Stretch="Fill" Width="130" Height="130"/>
-                </Border>
-                <TextBlock Text="Shahin Alam" FontSize="18" FontWeight="Bold" Margin="0,10,0,0" TextAlignment="Center"/>
-                <TextBlock Text="Rating: 98%" FontSize="14" Foreground="Green" TextAlignment="Center"/>
-            </StackPanel>
-
-            <!-- Lawyer 2 -->
-            <StackPanel Width="180" HorizontalAlignment="Center" Margin="20,0">
-                <Border Width="150" Height="150" CornerRadius="75"
-            ClipToBounds="True" BorderBrush="Gray" BorderThickness="2">
-                    <Image Source="Images/New.jpg" Stretch="Fill" Width="130" Height="130"/>
-                </Border>
-                <TextBlock Text="Ayesha Khan" FontSize="18" FontWeight="Bold" Margin="0,10,0,0" TextAlignment="Center"/>
-                <TextBlock Text="Rating: 95%" FontSize="14" Foreground="Green" TextAlignment="Center"/>
-            </StackPanel>
-
-            <!-- Lawyer 3 -->
-            <StackPanel Width="180" HorizontalAlignment="Center" Margin="20,0">
-                <Border Width="150" Height="150" CornerRadius="75"
-            ClipToBounds="True" BorderBrush="Gray" BorderThickness="2">
-                    <Image Source="Images/New.jpg" Stretch="Fill" Width="130" Height="130"/>
-                </Border>
-                <TextBlock Text="Tariq Islam" FontSize="18" FontWeight="Bold" Margin="0,10,0,0" TextAlignment="Center"/>
-                <TextBlock Text="Rating: 92%" FontSize="14" Foreground="Green" TextAlignment="Center"/>
-            </StackPanel>
-
+        <StackPanel x:Name="TopLawyersPanel" Orientation="Horizontal"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,230,0,0">
+            <!-- DYNAMIC LAWYERS WILL BE ADDED HERE FROM C# -->
         </StackPanel>
+
     </Grid>
 </Page>

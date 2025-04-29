@@ -29,19 +29,23 @@ namespace LawFarm
         {
             string name = NameBox.Text.Trim();
             string lawyerId = LawyerIdBox.Text.Trim();
-            string date = DatePicker.SelectedDate?.ToShortDateString() ?? "";
+            DateTime? selectedDate = DatePicker.SelectedDate;
             string description = DescriptionBox.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(name) ||
-                string.IsNullOrWhiteSpace(lawyerId) ||
-                string.IsNullOrWhiteSpace(date) ||
-                string.IsNullOrWhiteSpace(description))
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(lawyerId) || selectedDate == null || string.IsNullOrWhiteSpace(description))
             {
-                MessageBox.Show("Please fill out all fields.", "Missing Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Please fill in all fields.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            MessageBox.Show("Appointment confirmed!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            Database db = new Database();
+            db.InsertAppointment(name, lawyerId, selectedDate.Value, description);
+
+            // Optional: Clear fields after
+            NameBox.Clear();
+            LawyerIdBox.Clear();
+            DatePicker.SelectedDate = null;
+            DescriptionBox.Clear();
         }
     }
 }

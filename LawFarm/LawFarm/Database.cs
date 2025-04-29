@@ -284,6 +284,158 @@ namespace LawFarm
 
             return lawyers;
         }
+        //--------------------------------------------------------------------------------------------------------
+        //GET LAWYER ID BY NAME top 3
+        public List<LawyerDisplayModel> GetTopRatedLawyers(int count = 3)
+        {
+            List<LawyerDisplayModel> lawyers = new List<LawyerDisplayModel>();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = $@"
+                SELECT 
+                    l.lawyer_id,
+                    l.full_name,l.categories,
+                    COALESCE(AVG(r.rating), 0) AS average_rating
+                FROM lawyers l
+                LEFT JOIN reviews r ON l.lawyer_id = r.lawyer_id
+                GROUP BY l.lawyer_id, l.full_name
+                ORDER BY average_rating DESC
+                LIMIT {count};";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lawyers.Add(new LawyerDisplayModel
+                            {
+                                LawyerId = reader["lawyer_id"].ToString(),
+                                FullName = reader["full_name"].ToString(),
+                                Categories = reader["categories"].ToString(),
+                                Rating = Convert.ToDouble(reader["average_rating"]).ToString("0")
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error fetching top lawyers: " + ex.Message);
+            }
+
+            return lawyers;
+        }
+
+        //----------------------------------------------------------------------------------------------------------
+        //APPOINTMENT SAVING IN THE DATABASE
+        public void InsertAppointment(string userName, string lawyerId, DateTime date, string description)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = @"INSERT INTO appointments (user_name, lawyer_id, appointment_date, description)
+                             VALUES (@userName, @lawyerId, @date, @description)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userName", userName);
+                        cmd.Parameters.AddWithValue("@lawyerId", lawyerId);
+                        cmd.Parameters.AddWithValue("@date", date);
+                        cmd.Parameters.AddWithValue("@description", description);
+
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Appointment booked successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Database Error: " + ex.Message);
+            }
+        }
+
+        //----------------------------------------------------------------------------------------------------------
+        //DELETE USERS AND LAWYERS BY ADMIN
+        public List<User> GetAllUsers()
+        {
+            List<User> users = new List<User>();
+            using (var conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT id, username FROM users";
+                using (var cmd = new MySqlCommand(query, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        users.Add(new User
+                        {
+                            Id = Convert.ToInt32(reader["id"]),
+                            Username = reader["username"].ToString()
+                        });
+                    }
+                }
+            }
+            return users;
+        }
+
+        public void DeleteUserById(int id)
+        {
+            using (var conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "DELETE FROM users WHERE id = @id";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public List<Lawyer> GetAllLawyers()
+        {
+            List<Lawyer> lawyers = new List<Lawyer>();
+            using (var conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT id, full_name FROM lawyers";
+                using (var cmd = new MySqlCommand(query, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        lawyers.Add(new Lawyer
+                        {
+                            Id = Convert.ToInt32(reader["id"]),
+                            FullName = reader["full_name"].ToString()
+                        });
+                    }
+                }
+            }
+            return lawyers;
+        }
+
+        public void DeleteLawyerById(int id)
+        {
+            using (var conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "DELETE FROM lawyers WHERE id = @id";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
 
 
     }
