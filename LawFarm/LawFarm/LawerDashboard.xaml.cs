@@ -53,6 +53,7 @@ namespace LawFarm
 
             // Hide the form
             FormPanel.Visibility = Visibility.Collapsed;
+            ProfileImage.Visibility = Visibility.Visible;
         }
         public LawerDashboard(int id)
         {
@@ -62,10 +63,12 @@ namespace LawFarm
             if (db.LawyerExists(userId))
             {
                 FormPanel.Visibility = Visibility.Collapsed;
+                ProfileImage.Visibility = Visibility.Visible;
             }
             else
             {
                 FormPanel.Visibility = Visibility.Visible;
+                ProfileImage.Visibility = Visibility.Collapsed;
             }
 
         }

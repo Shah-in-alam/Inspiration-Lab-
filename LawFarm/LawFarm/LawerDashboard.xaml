@@ -19,6 +19,13 @@
         <TextBlock Text="Welcome to Lawyer Dashboard!" 
                FontSize="24" FontWeight="Bold" Foreground="DarkBlue" 
                HorizontalAlignment="Center" Margin="0,25,0,0"/>
+        <Image x:Name="ProfileImage"
+               Source="Images/Main.jpg"
+               Width="100" Height="100"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Top"
+               Margin="0,120,120,0"
+               Visibility="Collapsed"/>     
 
         <!-- Main Form Panel -->
         <StackPanel x:Name="FormPanel" Width="450" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0" RenderTransformOrigin="0.5,0.5">
@@ -66,6 +73,7 @@
             <Button Content="Submit Details" Height="35" Width="140" Background="#2E8B57" Foreground="White"
                 FontWeight="Bold" Margin="0,20,0,0" Click="SubmitDetails_Click"/>
         </StackPanel>
+        
     </Grid>
 
 

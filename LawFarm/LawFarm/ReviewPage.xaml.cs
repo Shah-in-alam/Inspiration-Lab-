@@ -29,12 +29,12 @@ namespace LawFarm
             string userName = UserNameBox.Text.Trim();
             string lawyerName = LawyerNameBox.Text.Trim();
             string lawyerId = LawyerIdBox.Text.Trim();
-            string ratingStr = (RatingBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+            string ratingStr = RatingBox.Text.Trim();  // Changed to TextBox instead of ComboBox
             string description = DescriptionBox.Text.Trim();
 
             // Simple validation
             if (string.IsNullOrWhiteSpace(userName) ||
-                string.IsNullOrWhiteSpace(lawyerName) ||    
+                string.IsNullOrWhiteSpace(lawyerName) ||
                 string.IsNullOrWhiteSpace(lawyerId) ||
                 string.IsNullOrWhiteSpace(ratingStr) ||
                 string.IsNullOrWhiteSpace(description))
@@ -44,21 +44,26 @@ namespace LawFarm
                 return;
             }
 
-            // TODO: Save to database here
-            int rating = int.Parse(ratingStr);
+            // Validate and parse rating as double
+            if (!double.TryParse(ratingStr, out double rating) || rating < 0 || rating > 5)
+            {
+                MessageBox.Show("Please enter a valid rating between 0 and 5 (e.g. 4.5).",
+                                "Invalid Rating", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
             // Save to database
             Database db = new Database();
-            db.InsertReview(userName, lawyerName, lawyerId, rating, description);
+            db.InsertReview(userName, lawyerName, lawyerId, rating, description); // Make sure DB method accepts double
 
             MessageBox.Show("Thank you for your feedback!",
                             "Review Submitted", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            // Optional: clear fields after submission
+            // Clear fields
             UserNameBox.Clear();
             LawyerNameBox.Clear();
             LawyerIdBox.Clear();
-            RatingBox.SelectedIndex = -1;
+            RatingBox.Clear();
             DescriptionBox.Clear();
         }
     }

@@ -190,7 +190,7 @@ namespace LawFarm
             }
         }
         //---------------------------------------------------------------------------------------------------------------------
-        //IF LAWER already input his details 
+        //IF LAWYER DETAILS already input his details 
         public bool LawyerExists(int userId)
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -209,7 +209,7 @@ namespace LawFarm
         //----------------------------------------------------------------------------------------------------------------------
         //REVIEW SAVING IN THE DATABASE
         
-        public void InsertReview(string userName, string lawyerName, string lawyerId, int rating, string description)
+        public void InsertReview(string userName, string lawyerName, string lawyerId, double rating, string description)
         {
             try
             {
