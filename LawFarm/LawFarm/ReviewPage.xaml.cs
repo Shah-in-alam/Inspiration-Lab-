@@ -23,16 +23,22 @@ namespace LawFarm
         public ReviewPage()
         {
             InitializeComponent();
+            LoadLawyerIds();
+        }
+        private void LoadLawyerIds()
+        {
+            Database db = new Database();
+            List<string> lawyerIds = db.GetAllLawyerIds(); // You must define this in Database.cs
+            LawyerIdBox.ItemsSource = lawyerIds;
         }
         private void SubmitReview_Click(object sender, RoutedEventArgs e)
         {
             string userName = UserNameBox.Text.Trim();
             string lawyerName = LawyerNameBox.Text.Trim();
-            string lawyerId = LawyerIdBox.Text.Trim();
-            string ratingStr = RatingBox.Text.Trim();  // Changed to TextBox instead of ComboBox
+            string lawyerId = LawyerIdBox.SelectedItem?.ToString(); 
+            string ratingStr = RatingBox.Text.Trim();
             string description = DescriptionBox.Text.Trim();
 
-            // Simple validation
             if (string.IsNullOrWhiteSpace(userName) ||
                 string.IsNullOrWhiteSpace(lawyerName) ||
                 string.IsNullOrWhiteSpace(lawyerId) ||
@@ -44,7 +50,6 @@ namespace LawFarm
                 return;
             }
 
-            // Validate and parse rating as double
             if (!double.TryParse(ratingStr, out double rating) || rating < 0 || rating > 5)
             {
                 MessageBox.Show("Please enter a valid rating between 0 and 5 (e.g. 4.5).",
@@ -52,9 +57,8 @@ namespace LawFarm
                 return;
             }
 
-            // Save to database
             Database db = new Database();
-            db.InsertReview(userName, lawyerName, lawyerId, rating, description); // Make sure DB method accepts double
+            db.InsertReview(userName, lawyerName, lawyerId, rating, description); // Database method should support double
 
             MessageBox.Show("Thank you for your feedback!",
                             "Review Submitted", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -62,7 +66,7 @@ namespace LawFarm
             // Clear fields
             UserNameBox.Clear();
             LawyerNameBox.Clear();
-            LawyerIdBox.Clear();
+            LawyerIdBox.SelectedIndex=-1;
             RatingBox.Clear();
             DescriptionBox.Clear();
         }

@@ -23,8 +23,14 @@ namespace LawFarm
         public Appointment()
         {
             InitializeComponent();
+            LoadLawyerIds();
         }
-
+        private void LoadLawyerIds()
+        {
+            Database db = new Database();
+            var lawyerIds = db.GetAllLawyerIds(); // Make sure this method exists in your Database.cs
+            LawyerIdBox.ItemsSource = lawyerIds;
+        }
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
             string name = NameBox.Text.Trim();
@@ -43,7 +49,7 @@ namespace LawFarm
 
             // Optional: Clear fields after
             NameBox.Clear();
-            LawyerIdBox.Clear();
+            LawyerIdBox.SelectedIndex = -1;
             DatePicker.SelectedDate = null;
             DescriptionBox.Clear();
         }

@@ -16,10 +16,10 @@ namespace LawFarm
 
         private void SignIn_Click(object sender, RoutedEventArgs e)
         {
-            string username = UsernameBox.Text.Trim();
+            string email = EmailBox.Text.Trim();
             string password = PasswordBox.Password;
 
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
             {
                 MessageBox.Show("Please enter both username and password.");
                 return;
@@ -29,7 +29,7 @@ namespace LawFarm
             string hashedPassword = dbHelper.HashPassword(password);
 
             // Get the user's ID from the users table
-            int userId = dbHelper.GetUserId(username, hashedPassword);
+            int userId = dbHelper.GetUserId(email, hashedPassword);
 
             if (userId == -1)
             {
@@ -38,13 +38,13 @@ namespace LawFarm
             }
 
             // Admin check
-            if (dbHelper.IsAdmin(username, password))
+            if (dbHelper.IsAdmin(email, password))
             {
                 MessageBox.Show("Welcome Admin!");
                 NavigationService?.Navigate(new AdminDashboard());
             }
             // Lawer check
-            else if (dbHelper.IsLawer(username, password))
+            else if (dbHelper.IsLawer(email, password))
             {
                 MessageBox.Show("Welcome Lawyer!");
                 NavigationService?.Navigate(new LawerDashboard(userId));  

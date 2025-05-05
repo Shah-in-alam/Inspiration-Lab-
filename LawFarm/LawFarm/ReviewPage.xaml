@@ -8,19 +8,19 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ReviewPage">
 
-    <Grid Background="White">
+    <Grid Background="DarkSeaGreen">
         <!-- Navbar -->
         <local:Navbar HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
 
         <!-- Page Heading -->
-        <TextBlock Text="Rate Us" HorizontalAlignment="Center" VerticalAlignment="Top"
+        <TextBlock Text="Rate Your Lawyer" HorizontalAlignment="Center" VerticalAlignment="Top"
                    FontSize="40" FontFamily="Georgia" FontWeight="Bold"
-                   Foreground="Purple" Margin="0,55,0,0" Height="40"/>
+                   Foreground="DarkSlateBlue" Margin="0,55,0,0" Height="40"/>
 
         <!-- Review Form Container -->
-        <Border Width="550" Padding="20" Background="WhiteSmoke" CornerRadius="10"
+        <Border Width="560" Padding="25" Background="White" CornerRadius="10"
                 HorizontalAlignment="Center" VerticalAlignment="Top"
-                BorderBrush="LightGray" BorderThickness="1" Height="345" Margin="0,105,0,0">
+                BorderBrush="#DDD" BorderThickness="1" Height="390" Margin="0,105,0,0">
             <StackPanel>
 
                 <!-- Row: Your Name & Lawyer Name -->
@@ -32,7 +32,7 @@
                     <StackPanel Width="20"/>
                     <StackPanel Width="240">
                         <TextBlock Text="Lawyer's Name:" FontWeight="Bold"/>
-                        <TextBox x:Name="LawyerNameBox" Height="30" Width="231"/>
+                        <TextBox x:Name="LawyerNameBox" Height="30"/>
                     </StackPanel>
                 </StackPanel>
 
@@ -40,27 +40,25 @@
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                     <StackPanel Width="240">
                         <TextBlock Text="Lawyer ID:" FontWeight="Bold"/>
-                        <TextBox x:Name="LawyerIdBox" Height="30"/>
+                        <ComboBox x:Name="LawyerIdBox" Height="30" Width="230"/>
                     </StackPanel>
                     <StackPanel Width="20"/>
                     <StackPanel Width="240">
-                        <TextBlock Text="Rating:" FontWeight="Bold"/>
-                        <TextBox x:Name="RatingBox" Height="30" />
+                        <TextBlock Text="Rating (1.0 to 5.0):" FontWeight="Bold"/>
+                        <TextBox x:Name="RatingBox" Height="30"/>
                     </StackPanel>
                 </StackPanel>
 
-                <!-- Description Box -->
+                <!-- Description -->
                 <TextBlock Text="Comment:" FontWeight="Bold" Margin="0,15,0,5"/>
-                <TextBox x:Name="DescriptionBox" Height="86" AcceptsReturn="True" TextWrapping="Wrap"/>
-               
+                <TextBox x:Name="DescriptionBox" Height="80" AcceptsReturn="True" TextWrapping="Wrap"/>
 
                 <!-- Submit Button -->
                 <Button Content="Submit Review"
-                Background="Purple" Foreground="White"
-                FontWeight="Bold" Height="44" Width="120"
-                Margin="0,10,0,0"
-                Click="SubmitReview_Click"/>
-
+                        Background="Purple" Foreground="White"
+                        FontWeight="Bold" Height="40" Width="130"
+                        Margin="0,15,0,0"
+                        Click="SubmitReview_Click"/>
             </StackPanel>
         </Border>
     </Grid>

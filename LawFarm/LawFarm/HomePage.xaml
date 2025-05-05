@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HomePage">
 
-    <Grid Background="White" Margin="0,0,0,-140">
+    <Grid Background="DarkSeaGreen" Margin="0,0,0,-140">
 
         <!-- Navbar -->
         <local:Navbar HorizontalAlignment="Stretch" VerticalAlignment="Top"/>

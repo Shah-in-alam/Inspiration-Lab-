@@ -63,18 +63,18 @@ namespace LawFarm
         }
         //------------------------------------------------------------------------------------------------------------
         // USER AUTHENTICATION NORMAL USER
-        public int GetUserId(string username, string hashedPassword)
+        public int GetUserId(string email, string hashedPassword)
         {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT id FROM users WHERE username = @username AND password = @password";
+                    string query = "SELECT id FROM users WHERE email = @Email AND password = @password";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@username", username);
+                        cmd.Parameters.AddWithValue("@Email", email);
                         cmd.Parameters.AddWithValue("@password", hashedPassword);
 
                         object result = cmd.ExecuteScalar();
@@ -90,16 +90,16 @@ namespace LawFarm
         }
         //-----------------------------------------------------------------------------------------------------------
         //LAWER AUTHENTICATION 
-        public bool IsLawer(string username, string password)
+        public bool IsLawer(string email, string password)
         {
             string hashedPassword = HashPassword(password);
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT Lawer FROM Users WHERE Username = @Username AND Password = @Password";
+                string query = "SELECT Lawer FROM Users WHERE Email = @Email AND Password = @Password";
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Username", username);
+                    cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Password", hashedPassword);
 
                     object result = cmd.ExecuteScalar();
@@ -113,16 +113,16 @@ namespace LawFarm
         }
         //----------------------------------------------------------------------------------------------------------
         //ADMIN AUTHENTICATION 
-        public bool IsAdmin(string username, string password)
+        public bool IsAdmin(string email, string password)
         {
             string hashedPassword = HashPassword(password);
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT Admin FROM Users WHERE Username = @Username AND Password = @Password";
+                string query = "SELECT Admin FROM Users WHERE Email = @Email AND Password = @Password";
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Username", username);
+                    cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Password", hashedPassword);
 
                     object result = cmd.ExecuteScalar();
@@ -236,6 +236,27 @@ namespace LawFarm
                 MessageBox.Show("Database Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        //----------------------------------------------------------------------------------------------------------
+        public List<string> GetAllLawyerIds()
+        {
+            List<string> ids = new List<string>();
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT lawyer_id FROM lawyers";
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ids.Add(reader["lawyer_id"].ToString());
+                    }
+                }
+            }
+            return ids;
+        }
+
+
         ///----------------------------------------------------------------------------------------------------------
         ///LAWYER DISPLAY IN BOOKING WINDOW: 
         public List<LawyerDisplayModel> GetLawyersWithRatings()
