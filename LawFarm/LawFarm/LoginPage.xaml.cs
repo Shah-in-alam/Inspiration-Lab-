@@ -28,7 +28,7 @@ namespace LawFarm
             Database dbHelper = new Database();
             string hashedPassword = dbHelper.HashPassword(password);
 
-            // Get the user's ID from the users table
+            // Get user ID from the database using hashed password
             int userId = dbHelper.GetUserId(email, hashedPassword);
 
             if (userId == -1)
@@ -37,18 +37,27 @@ namespace LawFarm
                 return;
             }
 
-            // Admin check
-            if (dbHelper.IsAdmin(email, password))
+            // Check admin first using hashed password
+            if (dbHelper.IsAdmin(userId))
             {
                 MessageBox.Show("Welcome Admin!");
-                NavigationService?.Navigate(new AdminDashboard());
+                try
+                {
+                    NavigationService?.Navigate(new AdminDashboard(userId));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Navigation error: " + ex.Message);
+                }
+
             }
-            // Lawer check
-            else if (dbHelper.IsLawer(email, password))
+            // Then check lawyer
+            else if (dbHelper.IsLawer(userId))
             {
                 MessageBox.Show("Welcome Lawyer!");
-                NavigationService?.Navigate(new LawerDashboard(userId));  
+                NavigationService?.Navigate(new LawerDashboard(userId));
             }
+            // Otherwise, it's a regular user
             else
             {
                 MessageBox.Show("Login successful!");

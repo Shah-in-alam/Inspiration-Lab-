@@ -25,8 +25,8 @@
                HorizontalAlignment="Center"
                VerticalAlignment="Top"
                Margin="0,120,120,0"
-               Visibility="Collapsed"/>     
-
+               Visibility="Collapsed"/>
+        
         <!-- Main Form Panel -->
         <StackPanel x:Name="FormPanel" Width="450" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0" RenderTransformOrigin="0.5,0.5">
             <StackPanel.RenderTransform>
@@ -41,7 +41,7 @@
             <TextBlock Text="Lawyer ID:" FontWeight="Bold"/>
             <TextBox x:Name="LawyerIdBox" Height="30" Margin="0,5,0,10"/>
 
-            
+
             <!-- Full Name -->
             <TextBlock Text="Full Name:" FontWeight="Bold"/>
             <TextBox x:Name="FullNameBox" Height="30" Margin="0,5,0,10"/>
@@ -73,9 +73,40 @@
             <Button Content="Submit Details" Height="35" Width="140" Background="#2E8B57" Foreground="White"
                 FontWeight="Bold" Margin="0,20,0,0" Click="SubmitDetails_Click"/>
         </StackPanel>
-        
+        <!-- Appointment Section -->
+        <Grid x:Name="AppointmentSection" Visibility="Collapsed" Margin="20,120,20,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <!-- Appointment List -->
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="300"/>
+                <!-- Calendar -->
+            </Grid.ColumnDefinitions>
+
+            <!-- Appointment List -->
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Appointment Requests" FontWeight="Bold" FontSize="18" Margin="0,0,0,10"/>
+                <ListView x:Name="AppointmentList" Width="410" HorizontalAlignment="Left">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="100"/>
+                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" Width="100"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+
+            <!-- Calendar -->
+            <Border Grid.Column="2" Background="#FFF9C4" Padding="10" CornerRadius="5">
+                <StackPanel>
+                    <TextBlock Text="Filter by Date" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                    <Calendar x:Name="AppointmentCalendar" SelectedDatesChanged="AppointmentCalendar_SelectedDatesChanged" Width="400" Height="400"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+
+
+
     </Grid>
-
-
-
 </Page>

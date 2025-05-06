@@ -21,20 +21,37 @@ namespace LawFarm
     public partial class AdminDashboard : Page
     {
         private Database db = new Database();
-        public AdminDashboard()
+        public int userId;
+
+        // Default constructor for XAML compatibility
+        public AdminDashboard() : this(0) { }
+
+        // Main constructor used when navigating from login
+        public AdminDashboard(int id)
         {
             InitializeComponent();
-            LoadUsers();      
+            userId = id;
+            LoadUsers();
             LoadLawyers();
         }
+
         private void LoadUsers()
         {
-            UsersList.ItemsSource = db.GetAllUsers(); // Returns List<User>
+            try
+            {
+                var users = db.GetAllUsers();
+                UsersList.ItemsSource = users;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to load users: " + ex.Message);
+            }
         }
+
 
         private void LoadLawyers()
         {
-            LawyersList.ItemsSource = db.GetAllLawyers(); // Returns List<Lawyer>
+            LawyersList.ItemsSource = db.GetAllLawyers();
         }
 
         private void DeleteUser_Click(object sender, RoutedEventArgs e)
@@ -62,5 +79,4 @@ namespace LawFarm
             NavigationService?.Navigate(new StartPage());
         }
     }
-
 }

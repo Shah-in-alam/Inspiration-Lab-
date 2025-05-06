@@ -52,7 +52,7 @@ namespace LawFarm {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/LawFarm;V1.0.0.0;component/navbar.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/LawFarm;component/navbar.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Navbar.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

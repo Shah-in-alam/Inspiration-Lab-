@@ -12,7 +12,7 @@ namespace LawFarm
 {
     class Database
     {
-        private string connectionString = "server=localhost;user id=root;password=;database=Lawdb";
+        private string connectionString = "server=localhost;user id=root;password=;database=LawDb";
         //-------------------------------------------------------------------------------------------------
         //PASSWORD HASSING
         public string HashPassword(string password)
@@ -90,50 +90,39 @@ namespace LawFarm
         }
         //-----------------------------------------------------------------------------------------------------------
         //LAWER AUTHENTICATION 
-        public bool IsLawer(string email, string password)
+        public bool IsLawer(int userId)
         {
-            string hashedPassword = HashPassword(password);
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT Lawer FROM Users WHERE Email = @Email AND Password = @Password";
+                string query = "SELECT Lawer FROM Users WHERE id = @UserId";
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
-
+                    cmd.Parameters.AddWithValue("@UserId", userId);
                     object result = cmd.ExecuteScalar();
-                    if (result != null && result != DBNull.Value)
-                    {
-                        return Convert.ToBoolean(result); // returns true if Lawer = 1
-                    }
-                    return false;
+                    return result != null && Convert.ToBoolean(result);
                 }
             }
         }
+
         //----------------------------------------------------------------------------------------------------------
         //ADMIN AUTHENTICATION 
-        public bool IsAdmin(string email, string password)
+        public bool IsAdmin(int userId)
         {
-            string hashedPassword = HashPassword(password);
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT Admin FROM Users WHERE Email = @Email AND Password = @Password";
+                string query = "SELECT Admin FROM Users WHERE id=@userId";
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
-
+                    cmd.Parameters.AddWithValue("@UserId", userId);
                     object result = cmd.ExecuteScalar();
-                    if (result != null && result != DBNull.Value)
-                    {
-                        return Convert.ToBoolean(result);
-                    }
-                    return false;
+                    return result != null && Convert.ToBoolean(result);
                 }
             }
         }
+
+
         //-----------------------------------------------------------------------------------------------------
         //CHANGE PASSWORD
         public bool UpdatePasswordByEmail(string email, string newPassword)
@@ -206,9 +195,85 @@ namespace LawFarm
                 }
             }
         }
+        public string GetLawyerIdByUserId(int userId)
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT lawyer_id FROM lawyers WHERE user_id = @userId";
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    object result = cmd.ExecuteScalar();
+                    return result?.ToString();
+                }
+            }
+        }
+        //--------------------------------------------------------------------------------------------------------------------------
+        public List<AppointmentModel> GetAppointmentsByLawyerIdAndDate(string lawyerId, DateTime date)
+        {
+            List<AppointmentModel> appointments = new List<AppointmentModel>();
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT name, date FROM appointments WHERE lawyer_id = @lawyerId AND DATE(date) = @date";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@lawyerId", lawyerId);
+                    cmd.Parameters.AddWithValue("@date", date.Date);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            appointments.Add(new AppointmentModel
+                            {
+                                Name = reader["name"].ToString(),
+                                Date = Convert.ToDateTime(reader["date"]).ToShortDateString()
+                            });
+                        }
+                    }
+                }
+            }
+
+            return appointments;
+        }
+        public List<AppointmentModel> GetAppointmentsByLawyerId(string lawyerId)
+        {
+            List<AppointmentModel> appointments = new List<AppointmentModel>();
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT name, date FROM appointments WHERE lawyer_id = @lawyerId";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@lawyerId", lawyerId);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            appointments.Add(new AppointmentModel
+                            {
+                                Name = reader["name"].ToString(),
+                                Date = Convert.ToDateTime(reader["date"]).ToShortDateString()
+                            });
+                        }
+                    }
+                }
+            }
+
+            return appointments;
+        }
+
+
         //----------------------------------------------------------------------------------------------------------------------
         //REVIEW SAVING IN THE DATABASE
-        
+
         public void InsertReview(string userName, string lawyerName, string lawyerId, double rating, string description)
         {
             try
@@ -353,19 +418,19 @@ namespace LawFarm
 
         //----------------------------------------------------------------------------------------------------------
         //APPOINTMENT SAVING IN THE DATABASE
-        public void InsertAppointment(string userName, string lawyerId, DateTime date, string description)
+        public void InsertAppointment(string name, string lawyerId, DateTime date, string description)
         {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = @"INSERT INTO appointments (user_name, lawyer_id, appointment_date, description)
-                             VALUES (@userName, @lawyerId, @date, @description)";
+                    string query = @"INSERT INTO appointments (name, lawyer_id, date, description)
+                             VALUES (@name, @lawyerId, @date, @description)";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@userName", userName);
+                        cmd.Parameters.AddWithValue("@name", name);
                         cmd.Parameters.AddWithValue("@lawyerId", lawyerId);
                         cmd.Parameters.AddWithValue("@date", date);
                         cmd.Parameters.AddWithValue("@description", description);
