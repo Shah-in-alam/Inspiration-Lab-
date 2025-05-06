@@ -47,3 +47,6 @@ C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-L
 C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\ReviewPage.baml
 C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\Appointment.g.cs
 C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\Appointment.baml
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\bin\Debug\net8.0-windows\SendGrid.dll
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\bin\Debug\net8.0-windows\StarkbankEcdsa.dll

@@ -31,6 +31,7 @@
                 <CheckBox x:Name="CorporateCheckBox" Content="Corporate" Margin="0,5"/>
                 <CheckBox x:Name="FamilyCheckBox" Content="Family Law" Margin="0,5"/>
                 <CheckBox x:Name="IPCheckBox" Content="Intellectual Property" Margin="0,5"/>
+                <CheckBox x:Name="EPCheckBox" Content="Employment" Margin="0,5"/>
             </StackPanel>
             <Button Content="Apply Filter" Width="120" Height="30" Margin="25,255,55,115"
                             Background="DarkSlateBlue" Foreground="White" FontWeight="Bold"

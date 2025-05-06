@@ -11,7 +11,7 @@ namespace LawFarm
         public LoginPage()
         {
             InitializeComponent();
-            
+
         }
 
         private void SignIn_Click(object sender, RoutedEventArgs e)
@@ -27,44 +27,31 @@ namespace LawFarm
 
             Database dbHelper = new Database();
             string hashedPassword = dbHelper.HashPassword(password);
-
-            // Get user ID from the database using hashed password
+            // Normal user check
             int userId = dbHelper.GetUserId(email, hashedPassword);
-
             if (userId == -1)
             {
                 MessageBox.Show("Invalid username or password.");
                 return;
             }
 
-            // Check admin first using hashed password
-            if (dbHelper.IsAdmin(userId))
-            {
-                MessageBox.Show("Welcome Admin!");
-                try
-                {
-                    NavigationService?.Navigate(new AdminDashboard(userId));
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Navigation error: " + ex.Message);
-                }
-
-            }
-            // Then check lawyer
-            else if (dbHelper.IsLawer(userId))
+            if (dbHelper.IsLawer(userId))
             {
                 MessageBox.Show("Welcome Lawyer!");
                 NavigationService?.Navigate(new LawerDashboard(userId));
             }
-            // Otherwise, it's a regular user
+            else if (dbHelper.IsAdmin(email, hashedPassword))
+            {
+                MessageBox.Show("Welcome Admin!");
+                NavigationService?.Navigate(new AdminDashboard(email));
+            }
+            
             else
             {
                 MessageBox.Show("Login successful!");
                 NavigationService?.Navigate(new HomePage());
             }
         }
-
         private void ForgotPasswordLink_Click(object sender, RoutedEventArgs e)
         {
             NavigationService?.Navigate(new ForgetPasswordPage());
@@ -74,6 +61,8 @@ namespace LawFarm
         {
             NavigationService?.Navigate(new StartPage());
         }
+
+
     }
 }
 

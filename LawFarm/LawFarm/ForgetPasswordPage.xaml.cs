@@ -1,51 +1,79 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
+using System.Net.Mail;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LawFarm
 {
-    /// <summary>
-    /// Interaction logic for ForgetPasswordPage.xaml
-    /// </summary>
     public partial class ForgetPasswordPage : Page
     {
         private Database db = new Database();
+        private string generatedOtp = "";
+
         public ForgetPasswordPage()
         {
             InitializeComponent();
         }
+
+        private void SendOtp_Click(object sender, RoutedEventArgs e)
+        {
+            string email = EmailBox.Text.Trim();
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                MessageBox.Show("Please enter your email.");
+                return;
+            }
+
+            generatedOtp = new Random().Next(100000, 999999).ToString();
+
+            try
+            {
+                MailMessage message = new MailMessage("your-email@gmail.com", email);
+                message.Subject = "Your OTP Code";
+                message.Body = $"Your OTP for password reset is: {generatedOtp}";
+
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                smtp.EnableSsl = true;
+                smtp.Credentials = new NetworkCredential("shahinalam111024@gmail.com", "Lawfarm"); // Use App Password if Gmail
+
+                smtp.Send(message);
+                MessageBox.Show("OTP sent to your email.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to send OTP: " + ex.Message);
+            }
+        }
+
         private void ChangePassword_Click(object sender, RoutedEventArgs e)
         {
             string email = EmailBox.Text.Trim();
+            string otpInput = OtpBox.Text.Trim();
             string newPassword = NewPasswordBox.Password;
 
-            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(newPassword))
+            if (otpInput != generatedOtp)
             {
-                MessageBox.Show("Please enter both email and new password.", "Error");
+                MessageBox.Show("Invalid OTP.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(newPassword))
+            {
+                MessageBox.Show("Please enter a new password.");
                 return;
             }
 
             bool updated = db.UpdatePasswordByEmail(email, newPassword);
-
             if (updated)
             {
-                MessageBox.Show("Password updated successfully!", "Success");
-                NavigationService?.Navigate(new StartPage()); // or SignInPage
+                MessageBox.Show("Password updated successfully.");
+                NavigationService?.Navigate(new StartPage());
             }
             else
             {
-                MessageBox.Show("Email not found.", "Error");
+                MessageBox.Show("Failed to update password.");
             }
         }
 

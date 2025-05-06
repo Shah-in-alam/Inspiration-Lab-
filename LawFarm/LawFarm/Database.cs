@@ -107,20 +107,24 @@ namespace LawFarm
 
         //----------------------------------------------------------------------------------------------------------
         //ADMIN AUTHENTICATION 
-        public bool IsAdmin(int userId)
+  
+        public bool IsAdmin(string email, string hashedPassword)
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT Admin FROM Users WHERE id=@userId";
+                string query = "SELECT Admin FROM Users WHERE Email = @Email AND Password = @Password";
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@UserId", userId);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
+
                     object result = cmd.ExecuteScalar();
                     return result != null && Convert.ToBoolean(result);
                 }
             }
         }
+
 
 
         //-----------------------------------------------------------------------------------------------------
@@ -217,7 +221,7 @@ namespace LawFarm
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT name, date FROM appointments WHERE lawyer_id = @lawyerId AND DATE(date) = @date";
+                string query = "SELECT name, date,description FROM appointments WHERE lawyer_id = @lawyerId AND DATE(date) = @date";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
@@ -231,7 +235,8 @@ namespace LawFarm
                             appointments.Add(new AppointmentModel
                             {
                                 Name = reader["name"].ToString(),
-                                Date = Convert.ToDateTime(reader["date"]).ToShortDateString()
+                                Date = Convert.ToDateTime(reader["date"]).ToShortDateString(),
+                                   Description = reader["description"].ToString()
                             });
                         }
                     }
@@ -268,6 +273,21 @@ namespace LawFarm
             }
 
             return appointments;
+        }
+        public string GetAppointmentDescription(string lawyerId, DateTime date)
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT description FROM appointments WHERE lawyer_id = @lawyerId AND DATE(date) = @date LIMIT 1";
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@lawyerId", lawyerId);
+                    cmd.Parameters.AddWithValue("@date", date.Date);
+                    var result = cmd.ExecuteScalar();
+                    return result?.ToString() ?? "No description found.";
+                }
+            }
         }
 
 
@@ -334,17 +354,17 @@ namespace LawFarm
                 {
                     conn.Open();
                     string query = @"
-                SELECT 
-                    l.lawyer_id,
-                    l.full_name,
-                    l.categories,
-                    COALESCE(AVG(r.rating), 0) AS average_rating
-                FROM 
-                    lawyers l
-                LEFT JOIN 
-                    reviews r ON l.lawyer_id = r.lawyer_id
-                GROUP BY 
-                    l.lawyer_id, l.full_name,l.categories";
+                   SELECT 
+                       l.lawyer_id,
+                       l.full_name,
+                       l.categories,
+                       COALESCE(AVG(r.rating), 0) AS average_rating
+                   FROM 
+                       lawyers l
+                   LEFT JOIN 
+                       reviews r ON l.lawyer_id = r.lawyer_id
+                   GROUP BY 
+                       l.lawyer_id, l.full_name, l.categories";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -356,7 +376,7 @@ namespace LawFarm
                                 LawyerId = reader["lawyer_id"].ToString(),
                                 FullName = reader["full_name"].ToString(),
                                 Categories = reader["categories"].ToString(),
-                                Rating = Convert.ToDouble(reader["average_rating"]).ToString("0") // Round off
+                                Rating = Convert.ToDouble(reader["average_rating"]) // Fix: Ensure Rating is assigned as a double
                             };
                             lawyers.Add(model);
                         }
@@ -402,7 +422,7 @@ namespace LawFarm
                                 LawyerId = reader["lawyer_id"].ToString(),
                                 FullName = reader["full_name"].ToString(),
                                 Categories = reader["categories"].ToString(),
-                                Rating = Convert.ToDouble(reader["average_rating"]).ToString("0")
+                                Rating = Convert.ToDouble(reader["average_rating"]) // Fix: Ensure Rating is assigned as a double
                             });
                         }
                     }
@@ -491,7 +511,7 @@ namespace LawFarm
             using (var conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT id, full_name FROM lawyers";
+                string query = "SELECT lawyer_id, full_name FROM lawyers";
                 using (var cmd = new MySqlCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -499,32 +519,29 @@ namespace LawFarm
                     {
                         lawyers.Add(new Lawyer
                         {
-                            Id = Convert.ToInt32(reader["id"]),
+                            LawyerId = reader["lawyer_id"].ToString(),
                             FullName = reader["full_name"].ToString()
                         });
+
                     }
                 }
             }
             return lawyers;
         }
 
-        public void DeleteLawyerById(int id)
+        public void DeleteLawyerById(string lawyerId)
         {
             using (var conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "DELETE FROM lawyers WHERE id = @id";
+                string query = "DELETE FROM lawyers WHERE lawyer_id = @lawyerId";
                 using (var cmd = new MySqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@lawyerId", lawyerId);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-
-
     }
-
-
 }

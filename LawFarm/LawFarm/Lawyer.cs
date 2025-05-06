@@ -8,7 +8,7 @@ namespace LawFarm
 {
     public class Lawyer
     {
-        public int Id { get; set; }
+        public string LawyerId { get; set; }
         public string FullName { get; set; }
     }
 }

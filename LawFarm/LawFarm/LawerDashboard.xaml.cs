@@ -1,24 +1,11 @@
-﻿using LawFarm;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LawFarm
 {
-    /// <summary>
-    /// Interaction logic for LawerDashboard.xaml
-    /// </summary>
     public partial class LawerDashboard : Page
     {
         private Database db = new Database();
@@ -82,14 +69,33 @@ namespace LawFarm
             AppointmentList.ItemsSource = db.GetAppointmentsByLawyerId(lawyerId);
         }
 
-        private void AppointmentCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        private void AppointmentCalendar_SelectedDatesChanged(object? sender, SelectionChangedEventArgs e)
         {
             if (AppointmentCalendar.SelectedDate.HasValue && !string.IsNullOrEmpty(currentLawyerId))
             {
-                DateTime selectedDate = AppointmentCalendar.SelectedDate.Value;
-                var filteredAppointments = db.GetAppointmentsByLawyerIdAndDate(currentLawyerId, selectedDate);
-                AppointmentList.ItemsSource = filteredAppointments;
+                var selectedDate = AppointmentCalendar.SelectedDate.Value;
+                var appointments = db.GetAppointmentsByLawyerIdAndDate(currentLawyerId, selectedDate);
+                AppointmentList.ItemsSource = appointments;
+
+                if (appointments.Count > 0)
+                {
+                    AppointmentDescription.Text = $"Client: {appointments[0].Name}\n\nDescription: {appointments[0].Description}";
+                }
+                else
+                {
+                    AppointmentDescription.Text = "No appointments for the selected date.";
+                }
             }
+        }
+
+        private void AcceptAppointment_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Appointment Accepted");
+        }
+
+        private void DeclineAppointment_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Appointment Declined");
         }
     }
 }

@@ -47,6 +47,8 @@ namespace LawFarm
             if (CorporateCheckBox.IsChecked == true) selectedCategories.Add("Corporate");
             if (FamilyCheckBox.IsChecked == true) selectedCategories.Add("Family Law");
             if (IPCheckBox.IsChecked == true) selectedCategories.Add("Intellectual Property");
+            if(EPCheckBox.IsChecked == true) selectedCategories.Add("Entertainment");
+
 
             var allLawyers = new Database().GetLawyersWithRatings();
 
