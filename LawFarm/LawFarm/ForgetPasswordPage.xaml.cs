@@ -30,7 +30,7 @@ namespace LawFarm
 
             try
             {
-                MailMessage message = new MailMessage("your-email@gmail.com", email);
+                MailMessage message = new MailMessage("shahinalam111024@gmail.com", email);
                 message.Subject = "Your OTP Code";
                 message.Body = $"Your OTP for password reset is: {generatedOtp}";
 

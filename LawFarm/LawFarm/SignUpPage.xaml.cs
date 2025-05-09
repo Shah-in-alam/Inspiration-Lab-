@@ -54,7 +54,7 @@ namespace LawFarm
                 return;
             }
 
-            dbHelper.InsertUser(username, email, password,isAdmin,isLawer);
+            dbHelper.InsertUser(username, email, password, isAdmin, isLawer);
         }
 
         private void LoginLink_Click(object sender, RoutedEventArgs e)

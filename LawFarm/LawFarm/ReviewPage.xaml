@@ -8,56 +8,69 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ReviewPage">
 
-    <Grid Background="DarkSeaGreen">
+    <Grid Background="#D1E7DD">
         <!-- Navbar -->
         <local:Navbar HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
 
         <!-- Page Heading -->
-        <TextBlock Text="Rate Your Lawyer" HorizontalAlignment="Center" VerticalAlignment="Top"
-                   FontSize="40" FontFamily="Georgia" FontWeight="Bold"
-                   Foreground="DarkSlateBlue" Margin="0,55,0,0" Height="40"/>
+        <TextBlock Text="Rate Your Lawyer"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   FontSize="34"
+                   FontFamily="Segoe UI"
+                   FontWeight="SemiBold"
+                   Foreground="#2E3B55"
+                   Margin="0,60,0,0"/>
 
-        <!-- Review Form Container -->
-        <Border Width="560" Padding="25" Background="White" CornerRadius="10"
+        <!-- Review Form -->
+        <Border Width="580" Padding="30" Background="White" CornerRadius="12"
                 HorizontalAlignment="Center" VerticalAlignment="Top"
-                BorderBrush="#DDD" BorderThickness="1" Height="390" Margin="0,105,0,0">
+                BorderBrush="#B0BEC5" BorderThickness="1" Height="400" Margin="0,115,0,0">
             <StackPanel>
 
-                <!-- Row: Your Name & Lawyer Name -->
-                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                    <StackPanel Width="240">
-                        <TextBlock Text="Your Name:" FontWeight="Bold"/>
-                        <TextBox x:Name="UserNameBox" Height="30"/>
+                <!-- Name Row -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+                    <StackPanel Width="240" Margin="0,0,20,0">
+                        <TextBlock Text="Your Name:" FontWeight="SemiBold"/>
+                        <TextBox x:Name="UserNameBox" Height="30" Padding="5"/>
                     </StackPanel>
-                    <StackPanel Width="20"/>
                     <StackPanel Width="240">
-                        <TextBlock Text="Lawyer's Name:" FontWeight="Bold"/>
-                        <TextBox x:Name="LawyerNameBox" Height="30"/>
-                    </StackPanel>
-                </StackPanel>
-
-                <!-- Row: Lawyer ID & Rating -->
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <StackPanel Width="240">
-                        <TextBlock Text="Lawyer ID:" FontWeight="Bold"/>
-                        <ComboBox x:Name="LawyerIdBox" Height="30" Width="230"/>
-                    </StackPanel>
-                    <StackPanel Width="20"/>
-                    <StackPanel Width="240">
-                        <TextBlock Text="Rating (1.0 to 5.0):" FontWeight="Bold"/>
-                        <TextBox x:Name="RatingBox" Height="30"/>
+                        <TextBlock Text="Lawyer's Name:" FontWeight="SemiBold"/>
+                        <TextBox x:Name="LawyerNameBox" Height="30" Padding="5"/>
                     </StackPanel>
                 </StackPanel>
 
-                <!-- Description -->
-                <TextBlock Text="Comment:" FontWeight="Bold" Margin="0,15,0,5"/>
-                <TextBox x:Name="DescriptionBox" Height="80" AcceptsReturn="True" TextWrapping="Wrap"/>
+                <!-- Lawyer ID & Rating -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+                    <StackPanel Width="240" Margin="0,0,20,0">
+                        <TextBlock Text="Lawyer ID:" FontWeight="SemiBold"/>
+                        <ComboBox x:Name="LawyerIdBox" Height="30" Width="245"/>
+                    </StackPanel>
+                    <StackPanel Width="240">
+                        <TextBlock Text="Rating (1.0 to 5.0):" FontWeight="SemiBold"/>
+                        <TextBox x:Name="RatingBox" Height="30" Padding="5"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Comment -->
+                <TextBlock Text="Comment:" FontWeight="SemiBold" Margin="0,5,0,2"/>
+                <TextBox x:Name="DescriptionBox"
+                         Height="80"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         Padding="5"
+                         VerticalScrollBarVisibility="Auto"
+                         Margin="0,0,0,10"/>
 
                 <!-- Submit Button -->
                 <Button Content="Submit Review"
-                        Background="Purple" Foreground="White"
-                        FontWeight="Bold" Height="40" Width="130"
-                        Margin="0,15,0,0"
+                        Background="#6A1B9A"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        Height="40"
+                        Width="160"
+                        HorizontalAlignment="Center"
+                        Cursor="Hand"
                         Click="SubmitReview_Click"/>
             </StackPanel>
         </Border>
