@@ -53,6 +53,7 @@ namespace LawFarm
         private void DeleteUser_Click(object sender, RoutedEventArgs e)
         {
             var selectedUser = UsersList.SelectedItem as User;
+            
             if (selectedUser != null)
             {
                 db.DeleteUserById(selectedUser.Id);

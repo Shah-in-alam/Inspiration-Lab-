@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Appointment">
-    <Grid Background="DarkSeaGreen">
+    <Grid Background="#D1E7DD">
         <!-- Navbar -->
         <local:Navbar HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
 

@@ -5,44 +5,97 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LawFarm"
       mc:Ignorable="d" d:DesignWidth="800"
-      Title="AdminDashboard" Height="565">
+      Title="AdminDashboard" Height="565" Background="DarkSeaGreen">
 
-    <Grid Background="#C9E4CA">
-        <!-- Logout Button -->
-        <Button Content="Logout" Width="80" Height="30"
-                Background="Crimson" Foreground="#C9E4CA" FontWeight="Bold"
-                HorizontalAlignment="Right" VerticalAlignment="Top"
-                Margin="0,10,10,0"
-                Click="Logout_Click" />
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="11*"/>
+        </Grid.ColumnDefinitions>
+        <!-- Top Bar -->
+        <Grid Background="#2C3E50" Height="75" VerticalAlignment="Top" Margin="0,-40,0,0" Grid.ColumnSpan="2">
+            <TextBlock Text="Admin Dashboard"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       Margin="20,0,0,0"
+                       HorizontalAlignment="Left"/>
 
-        <!-- Main Content Panel -->
-        <StackPanel Margin="30,60,30,30" HorizontalAlignment="Center">
-            <TextBlock Text="Admin Dashboard" 
-                       FontSize="26" FontWeight="Bold" Foreground="Purple"
-                       HorizontalAlignment="Center" Margin="0,0,0,20"/>
+            <Button Content="Logout"
+                    Width="80" Height="30"
+                    Background="#D32F2F"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,15,0"
+                    Click="Logout_Click"/>
+        </Grid>
 
-            <!-- Users Section -->
-            <GroupBox Header="Registered Users" FontWeight="Bold" Padding="10" Margin="0,0,0,20">
+        <!-- Main Content -->
+        <Grid Margin="20,70,20,20" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Users Panel -->
+            <Border Background="White" CornerRadius="8" BorderBrush="#B0BEC5" BorderThickness="1" Padding="15" Grid.Column="0">
                 <StackPanel>
-                    <ListView x:Name="UsersList" Height="100" DisplayMemberPath="Username" SelectionMode="Single"/>
-                    <Button Content="Delete Selected User" Width="200" Height="30"
-                            Background="#DC143C" Foreground="White"
-                            HorizontalAlignment="Left" Margin="0,10,0,0"
+                    <TextBlock Text="Registered Users"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               Margin="0,0,0,10"/>
+
+                    <ListView x:Name="UsersList" Height="300" Background="#F5F5F5">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="20"/>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Username}" Width="200"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <Button Content="Delete User"
+                            Width="120" Height="35"
+                            Margin="0,15,0,0"
+                            Background="#E53935"
+                            Foreground="White"
+                            FontWeight="Bold"
                             Click="DeleteUser_Click"/>
                 </StackPanel>
-            </GroupBox>
+            </Border>
 
-            <!-- Lawyers Section -->
-            <GroupBox Header="Registered Lawyers" FontWeight="Bold" Padding="10">
+            <!-- Lawyers Panel -->
+            <Border Background="White" CornerRadius="8" BorderBrush="#B0BEC5" BorderThickness="1" Padding="15" Grid.Column="2">
                 <StackPanel>
-                    <ListView x:Name="LawyersList" Height="100" DisplayMemberPath="FullName" SelectionMode="Single"/>
-                    <Button Content="Delete Selected Lawyer" Width="200" Height="30"
-                            Background="#DC143C" Foreground="White"
-                            HorizontalAlignment="Left" Margin="0,10,0,0"
+                    <TextBlock Text="Registered Lawyers"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               Margin="0,0,0,10"/>
+
+                    <ListView x:Name="LawyersList" Height="300" Background="#F5F5F5">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding LawyerId}" Width="60"/>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding FullName}" Width="250" />
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <Button Content="Delete Lawyer"
+                            Width="130" Height="35"
+                            Margin="0,15,0,0"
+                            Background="#E53935"
+                            Foreground="White"
+                            FontWeight="Bold"
                             Click="DeleteLawyer_Click"/>
                 </StackPanel>
-            </GroupBox>
-        </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 
 </Page>

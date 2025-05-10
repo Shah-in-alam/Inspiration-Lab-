@@ -18,8 +18,8 @@
                    VerticalAlignment="Top"
                    FontSize="34"
                    FontFamily="Segoe UI"
-                   FontWeight="SemiBold"
-                   Foreground="#2E3B55"
+                   FontWeight="Bold"
+                   Foreground="Purple" 
                    Margin="0,60,0,0"/>
 
         <!-- Review Form -->

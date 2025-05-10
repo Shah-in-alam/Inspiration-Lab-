@@ -22,7 +22,16 @@
         <TextBlock Text="Top Rated" HorizontalAlignment="Center" VerticalAlignment="Top"
                FontSize="40" Margin="0,150,0,0"
                FontFamily="Georgia" Foreground="Black" FontWeight="Bold"/>
-
+        <TextBlock TextWrapping="Wrap"
+           FontSize="18"
+           FontFamily="Segoe UI"
+           Foreground="#2E3B55"
+           Margin="0,210,0,265"
+           TextAlignment="Center"
+           HorizontalAlignment="Center"
+           Width="700" FontWeight="SemiBold">
+    Welcome to LawFarm — your trusted legal companion. Whether you're seeking expert legal advice, booking consultations, or reviewing lawyer services, LawFarm connects you with qualified professionals who care about your case. Explore, book, and manage your legal needs all in one place.
+        </TextBlock>
         <!-- Horizontal StackPanel for lawyers -->
         <StackPanel x:Name="TopLawyersPanel" Orientation="Horizontal"
                     HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,230,0,0">

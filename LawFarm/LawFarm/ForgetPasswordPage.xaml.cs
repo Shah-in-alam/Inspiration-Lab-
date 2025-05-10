@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SendGrid.Helpers.Mail;
+using SendGrid;
+using System;
 using System.Net;
 using System.Net.Mail;
 using System.Windows;
@@ -30,21 +32,31 @@ namespace LawFarm
 
             try
             {
-                MailMessage message = new MailMessage("shahinalam111024@gmail.com", email);
-                message.Subject = "Your OTP Code";
-                message.Body = $"Your OTP for password reset is: {generatedOtp}";
+                var apiKey = "your-real-sendgrid-key";
+                var client = new SendGrid.SendGridClient(apiKey);
+                var from = new SendGrid.Helpers.Mail.EmailAddress("mshahinalam37@gmail.com", "LawFarm Support");
+                var subject = "Your OTP Code";
+                var to = new SendGrid.Helpers.Mail.EmailAddress(email);
+                var plainTextContent = $"Your OTP for password reset is: {generatedOtp}";
+                var htmlContent = $"<strong>Your OTP for password reset is: {generatedOtp}</strong>";
+                var msg = SendGrid.Helpers.Mail.MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
 
-                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                smtp.EnableSsl = true;
-                smtp.Credentials = new NetworkCredential("shahinalam111024@gmail.com", "Lawfarm"); // Use App Password if Gmail
+                var response = client.SendEmailAsync(msg).GetAwaiter().GetResult();
 
-                smtp.Send(message);
-                MessageBox.Show("OTP sent to your email.");
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("OTP sent to your email.");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to send OTP. Try again.");
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to send OTP: " + ex.Message);
+                MessageBox.Show("Error sending OTP: " + ex.Message);
             }
+           
         }
 
         private void ChangePassword_Click(object sender, RoutedEventArgs e)

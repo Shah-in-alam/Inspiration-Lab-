@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Interop;
 
 namespace LawFarm
 {
@@ -90,12 +91,13 @@ namespace LawFarm
 
         private void AcceptAppointment_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Appointment Accepted");
+            
+            NavigationService?.Navigate(new ProgressPage(userId));
         }
 
         private void DeclineAppointment_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Appointment Declined");
+            MessageBox.Show("Your decision will be sent via email.", "Notice", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

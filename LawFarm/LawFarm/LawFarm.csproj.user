@@ -31,6 +31,9 @@
     <Compile Update="Navbar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ProgressPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ReviewPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -67,6 +70,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Navbar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProgressPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ReviewPage.xaml">
