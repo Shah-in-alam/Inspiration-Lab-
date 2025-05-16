@@ -52,3 +52,8 @@ C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-L
 C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\ref\LawFarm.dll
 C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\ProgressPage.g.cs
 C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\obj\Debug\net8.0-windows\ProgressPage.baml
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\bin\Debug\net8.0-windows\DotNetEnv.dll
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.dll
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\bin\Debug\net8.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Users\MOHAMMAD MIRAZ\OneDrive\Desktop\Semester5\Inspiration lab\Inspiration-Lab-\LawFarm\LawFarm\bin\Debug\net8.0-windows\Sprache.dll
