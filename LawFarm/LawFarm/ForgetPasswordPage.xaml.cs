@@ -32,7 +32,7 @@ namespace LawFarm
 
             try
             {
-                var apiKey = "Your-sendgrid-api-key";
+                var apiKey = "Your api key";
                 var client = new SendGrid.SendGridClient(apiKey);
 
                 var from = new SendGrid.Helpers.Mail.EmailAddress("mshahinalam37@gmail.com", "LawFarm Support");
