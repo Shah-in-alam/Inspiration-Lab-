@@ -70,7 +70,7 @@
                                             <TextBlock Foreground="DarkGreen">
                                                 <Run Text="Rating: " FontWeight="SemiBold"/>
                                                 <Run Text="{Binding Rating}"/>
-                                                <Run Text="%" />
+                                                <Run Text=" " />
                                             </TextBlock>
                                         </StackPanel>
                                     </StackPanel>

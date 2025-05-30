@@ -55,6 +55,11 @@ namespace LawFarm
             }
 
             dbHelper.InsertUser(username, email, password, isAdmin, isLawer);
+            // Optional: Clear fields after submission
+            UsernameBox.Clear();
+            EmailBox.Clear();
+            PasswordBox.Clear();
+                
         }
 
         private void LoginLink_Click(object sender, RoutedEventArgs e)

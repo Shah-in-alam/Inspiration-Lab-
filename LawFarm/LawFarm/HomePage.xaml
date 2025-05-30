@@ -19,7 +19,7 @@
                FontFamily="Georgia" Foreground="Purple" FontWeight="Bold"/>
 
         <!-- Top Rated Label -->
-        <TextBlock Text="Top Rated" HorizontalAlignment="Center" VerticalAlignment="Top"
+        <TextBlock Text="Top Rated Lawyers" HorizontalAlignment="Center" VerticalAlignment="Top"
                FontSize="40" Margin="0,150,0,0"
                FontFamily="Georgia" Foreground="Black" FontWeight="Bold"/>
         <TextBlock TextWrapping="Wrap"
@@ -30,7 +30,7 @@
            TextAlignment="Center"
            HorizontalAlignment="Center"
            Width="700" FontWeight="SemiBold">
-    Welcome to LawFarm — your trusted legal companion. Whether you're seeking expert legal advice, booking consultations, or reviewing lawyer services, LawFarm connects you with qualified professionals who care about your case. Explore, book, and manage your legal needs all in one place.
+    Welcome to LawFirm — your trusted legal companion. Whether you're seeking expert legal advice, booking consultations, or reviewing lawyer services, LawFirm connects you with qualified professionals who care about your case. Explore, book, and manage your legal needs all in one place.
         </TextBlock>
         <!-- Horizontal StackPanel for lawyers -->
         <StackPanel x:Name="TopLawyersPanel" Orientation="Horizontal"

@@ -77,7 +77,7 @@ namespace LawFarm {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/LawFarm;V1.0.0.0;component/forgetpasswordpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/LawFarm;component/forgetpasswordpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\ForgetPasswordPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

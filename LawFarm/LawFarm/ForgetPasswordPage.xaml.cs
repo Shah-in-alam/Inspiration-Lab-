@@ -105,11 +105,17 @@ namespace LawFarm
             {
                 MessageBox.Show("Failed to update password.");
             }
+            // Optional: Clear fields after
+            EmailBox.Clear();
+            OtpBox.Clear();
+            NewPasswordBox.Clear();
         }
+
 
         private void BackToLogin_Click(object sender, RoutedEventArgs e)
         {
             NavigationService?.Navigate(new StartPage());
         }
+          
     }
 }

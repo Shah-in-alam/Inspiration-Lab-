@@ -51,6 +51,10 @@ namespace LawFarm
                 MessageBox.Show("Login successful!");
                 NavigationService?.Navigate(new HomePage());
             }
+
+            // Optional: Clear fields after submission
+            EmailBox.Clear();
+            PasswordBox.Clear();
         }
         private void ForgotPasswordLink_Click(object sender, RoutedEventArgs e)
         {
